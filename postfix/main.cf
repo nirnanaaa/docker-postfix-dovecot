@@ -1,0 +1,72 @@
+smtpd_banner = $myhostname ESMTP $myhostname
+biff = no
+append_dot_mydomain = no
+delay_warning_time = 4h
+readme_directory = no
+
+# TLS parameters. TODO for Docker
+smtpd_tls_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
+smtpd_tls_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
+
+smtpd_use_tls=yes
+smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache
+smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
+smtpd_sasl_auth_enable = yes
+smtpd_sasl_type=dovecot
+smtpd_sasl_path = private/auth
+smtpd_sasl_security_options = noanonymous
+smtpd_sasl_local_domain = $myhostname
+broken_sasl_auth_clients = yes
+smtp_sasl_auth_enable = no
+
+smtpd_recipient_restrictions =
+        # Always let Postmaster, etc through
+                        check_recipient_access btree:/etc/postfix/access_recipient_rfc,
+        # White- and Blacklisting
+                        check_client_access btree:/etc/postfix/access_client,
+                        check_helo_access btree:/etc/postfix/access_helo,
+                        check_sender_access btree:/etc/postfix/access_sender,
+                        check_recipient_access btree:/etc/postfix/access_recipient,
+                        reject_non_fqdn_sender,
+                        reject_non_fqdn_recipient,
+                        reject_unknown_sender_domain,
+                        reject_unknown_recipient_domain,
+                        permit_sasl_authenticated,
+                        permit_mynetworks,
+#                       reject_rbl_client zen.spamhaus.org,
+#                       reject_rbl_client ix.dnsbl.manitu.net,
+#                       reject_rbl_client bl.spamcop.net,
+#                       reject_rbl_client dnsbl.njabl.org,
+#                        reject_rhsbl_client blackhole.securitysage.com,
+        # Policyd-Weight
+                        #check_policy_service inet:127.0.0.1:12525,
+        # Greylisting
+                        check_policy_service inet:127.0.0.1:10023,
+                        reject_unauth_destination,
+                        check_policy_service unix:private/policy,
+                        permit
+
+
+smtpd_sender_restrictions = reject_unknown_sender_domain
+strict_rfc821_envelopes = yes
+soft_bounce = no
+
+body_checks = pcre:/etc/postfix/body_checks
+header_checks = pcre:/etc/postfix/header_checks
+transport_maps = pgsql:/etc/postfix/transport.cf
+
+# Dynamic
+virtual_mailbox_base = /var/mail/vmail
+virtual_mailbox_maps = pgsql:/etc/postfix/mailboxes.cf
+virtual_maps = pgsql:/etc/postfix/virtual.cf
+
+#myhostname = $
+#mydomain = zyg.li
+mydestination = $mydomain, $myhostname
+
+myorigin = /etc/mailname
+mynetworks = 127.0.0.0/8
+mailbox_size_limit = 0
+recipient_delimiter = +
+inet_interfaces = all
+queue_directory = /var/spool/postfix

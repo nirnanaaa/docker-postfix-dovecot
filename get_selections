@@ -1,0 +1,15 @@
+postfix
+postgrey
+postfix-pcre
+postfix-pgsql
+policyd-weight
+dovecot-common
+dovecot-core
+dovecot-gssapi
+dovecot-imapd
+dovecot-ldap
+dovecot-lmtpd
+dovecot-mysql
+dovecot-pgsql
+dovecot-sieve
+dovecot-sqlite

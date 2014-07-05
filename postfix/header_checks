@@ -1,0 +1,402 @@
+# Version 4.0
+#
+# Das Postfix-Buch - Sichere Mailserver mit Linux
+# http://www.postfixbuch.de - Peer Heinlein
+#
+# Heinlein Professional Linux Support GmbH
+# http://www.heinlein-support.de
+#
+# Downloadquelle dieser Datei: http://www.postfixbuch.de/web/service/checks/
+#
+#
+# Verwendung der Filtersammlung auf eigene Gefahr.
+#
+# Es handelt sich dabei um einen tagesaktuellen Auszug der beim
+# ISP "JPBerlin.de" genutzten Filterregeln. Bitte pruefen Sie vor einem
+# Einsatz bei Ihnen ganz genau, ob diese Regeln noch aktuell und sinnvoll
+# sind und ob Sie sie einsetzen moechten!
+#
+#
+# Setzen Sie in /etc/postfix/main.cf einfach
+#
+# header_checks = pcre:/etc/postfix/header_checks oder
+# oder
+# header_checks = regexp:/etc/postfix/header_checks
+#
+# und fuehren Sie "rcpostfix reload" aus.
+#
+# Tipp: pcre ist ein Drittel schneller als regexp!
+#
+#
+
+#
+# Die Nummern hinter dem REJECT tauchen spaeter iM SMTP-Error oder im Log
+# auf, um die Filter-Regel wiederzufinden, die den Block ausgeloest hat.
+# Es kann stattdessen auch einfacher Text benutzt werden.
+#
+
+
+#
+#
+# Besondere Regelungen ausserhalb unseres Spamschutzes
+# ===============================================
+#
+
+# Filtert Amavis-Eintr�ge	
+/^Received: from localhost/	IGNORE
+
+#
+# Domeus hat bis heute nicht den Unterschied zwischen Mailheader-To und
+# SMTP-Envelope-To verstanden und fabriziert seit nunmehr über sieben Jahren in
+# schöner Regelmäßigkeit Mailschleifen im vier/fünfstelligen Bereich.
+#
+# /^Received:.*domeus\.com/	REJECT Domeus baut Mailschleifen und hat wichtige RFCs nicht verstanden
+
+/X-policyd-weight:.*to=dresden@listen.attac.de/         IGNORE
+
+#
+#
+# Tagesaktuelle, nur voruebergehende Regelungen:
+# ===============================================
+# [Immer mit Timestamp (!) und ggf. Ticket-Nummer eintragen!]
+#
+/^Received: from 62.56.132.7.satcom-systems.net/	REJECT Header-Spamschutzregel TMP-1
+
+# 20110630 - HPLS-Ticket#: 2011063010000278
+/^Received: from dsl88-247-23947.ttnet.net.tr/		REJECT Header-Spamschutzregel TMP-2
+
+# 20110925 - u.A. HPLS-Ticket#: 2011092510000102
+/^Subject: *pdf ist Ihre Gewinnchancen Informationen*/	REJECT Header-Spamschutzregel TMP-3
+
+#20121229 - chris und brian db-central-antispam - wieder ok
+
+#/^From:.*@package.*\.hosting\.db-central\.com>.*/ REJECT
+#/^To:.*@package.*\.hosting\.db-central\.com/ REJECT
+#/^From:.*@volkswagen-itc.com>.*/ REJECT
+
+#
+#
+# Dauerhaft genutzte Regelungen:
+# ===============================================
+# [Immer mit aufsteiger Nummer sauber eintragen!]
+#
+/^Return-Path: <noreply@direkt-sicher.com>$/	REJECT Header-Spamschutzregel 1176
+/^Return-Path: site258@www.pand331.nl/	REJECT Header-Spamschutzregel 1175
+/^Received:.*puck844.server4you.de.*/  REJECT Header-Spamschutzregel 1174
+/^From:.*<olgaber[1-9]@yandex.ru>.*/ REJECT Header-Spamschutzregel 1173
+/^From:.*jpberlin admin <drepcaulfield@eircom.net>.*/  REJECT Header-Spamschutzregel 1172
+/^Received:.*envelope-from <konductt@server.mwhdns.com.*/ REJECT Header-Spamschutzregel 1171
+/^From: .*dpaypal@dpaypal.at/ REJECT Header-Spamschutzregel 1170
+/^Subject:.*=?koi8-r?B?ycvBINDPIMTPzMfBzSDLz83Qwc7JyS4=?=.*/ REJECT Header-Spamschutzregel 1169
+/^Subject:.*Company founded in Gibraltar is currently looking for European sector based labor force.*/ REJECT Header-Spamschutzregel 1168
+/^From:.*@papertocad.de/	REJECT	Header-Spamschutzregel 1167
+/^From:.*admin@mailbox.com.*/ REJECT Header-Spamschutzregel 1166
+/^From:.*Billing-Service@NetPay.de.*/ REJECT Header-Spamschutzregel 1165
+/^Subject:.*V[^a-z]{3-6}[1,i,l][^a-z]{3-6}A[^a-z]{3-6}G[^a-z]{3-6}R[^a-z]{3-6}A/ REJECT Header-Spamschutzregel 1164: Viagra-Keyword
+/^Sender:.*phpscript@ws[0-9].microware.hu.*$/	REJECT Header-Spamschutzregel 1163
+/^Subject:.*async.facebook.com.*$/	REJECT Header-Spamschutzregel 1162
+/^Subject:.*Ihr freundlicher Support$/	REJECT Header-Spamschutzregel 1161
+/^From:.*@deutschseo.com/	REJECT Header-Spamschutzregel 1160
+/^X-RocketYMMF: webluck1847@att.net/	REJECT	Header-Spamschutzregel 1159
+/^Subject: offizielle sieger/	REJECT Header-Spamschutzregel 1158
+/^From: *@verifiedbyvisa.fr*/ REJECT Header-Spamschutzregel 1157 
+/^Replay-To: *@verifiedbyvisa.fr/ REJECT Header-Spamschutzregel 1156 
+/^Replay-To: *girl@mailisfree.com/ REJECT Header-Spamschutzregel 1155 
+/^Subject: vous devez reglez votre compte free.fr/ REJECT Header-Spamschutzregel 1154 
+/^Message-ID: *mscreator[0-9][0-9].fagms.de/	REJECT	Header-Spamschutzregel 1153
+/^Subject: gelegenheit zur webverbesserung/		REJECT Header-Spamschutzregel 1052
+/^Subject: Achtung! Ihr paypal-Konto wurde begrenzt!/		REJECT Header-Spamschutzregel 1051
+/^X-PHP-Script: campnetworking.ca\/images\/susscesful_soties\/nfoscomm.php*/	REJECT	Header-Spamschutzregel 1050
+/^Subject:.*zusammenarbeit zur webverbesserung/		REJECT  Header-Spamschutzregel 1049
+/^X-PHP-Script: biditsaleit.com\/dz\/mailer.php*/	REJECT	Header-Spamschutzregel 1048
+/^Subject:.*from GMC manufacturer/	REJECT Header-Spamschutzregel 1047
+/^Return-Path: *ventouxl@ns[0-9]{3}.medialook.net/	REJECT	Header-Spamschutzregel 1046
+/^From :.*Topillen Apotheke /		REJECT Header-Spamschutzregel 1145
+/^Subject: Top Apotheke/ 		REJECT Header-Spamschutzregel 1144
+/^message-ID: *phx.gbl/	REJECT	Header-Spamschutzregel 1143
+/^List-Unsubscribe: *e-mailing.pymac.fr\/[a-z]\/[a-z]\/[0-9]{4}\/[0-9]{6}/	REJECT	Header-Spamschutzregel 1142
+/^Return-Path: *@oanm[0-9]{2}.com/	REJECT Header-Spamschutzregel 1141
+/^Subject: lighting products from GMC manufacturer/	REJECT Header-Spamschutzregel 1140
+/^Subject: OFFIZIELLE GEWINNBENACHRITIGUNG/	REJECT Header-Spamschutzregel 1139
+/^Subject: God bless you as you get back to me/	REJECT  Header-Spamschutzregel 1038
+/^List-Unsubribe: *tk3.sbc01.com\/sy\/*/	REJECT	Header-Spamschutzregel 1037
+/^List-Unsubscribe: *tk3.sbc01.com\/sy\/*/	REJECT	Header-Spamschutzregel 1037
+/^Message-ID: *[0-9]{8}-[0-9]{8}-[0-9a-z]{3}-0@S102*/	REJECT	Header-Spamschutzregel 1036
+/^Subject: *YOUR EMAIL HAS WON YOU GBP*/	REJECT	Header-Spamschutzregel 1035
+/^From: *ventouxl@ns[0-9]?[0-9].medialook.net/	REJECT	Header-Spamschutzregel 1034
+/^From: *gestioncreditexpert_[0-9]{4}@gce-mailer-[0-9]{2}.com/	REJECT	Header-Spamschutzregel 1033
+/^From:.*erosvision.com/	REJECT Header-Spamschutzregel 1032
+/^From:*@payapl.fr/	REJECT	Header-Spamschutzregel 1031
+# 20110706 - HPLS-Ticket#: 2011070610000053
+/^X-PHP-Script: mars.rapidvps.com\/~emoosite\/tmp\/install_4b10cb87da737\/languages\/site\/husa.php*/	REJECT	Header-Spamschutzregel 1030
+/^Thread-Index: *Acvd0cAG8IQaasqAcNaztWODnM30ZA/	REJECT Header-Spamschutzregel 1029
+/^Subject: aktualisieren Sie Ihre Bankdaten/	REJECT Header-Spamschutzregel 1028
+/^Subject: Erfahrungsbericht Bernd Matthes/	REJECT Header-Spamschutzregel 1027
+/^Subject:.*IP PBX/i			REJECT Header-Spamschutzregel 1026
+/^From:.*Nicoll Christopher John/	REJECT Header-Spamschutzregel 1025
+/^From:.*SHELL PETROLEUM/  		REJECT Header-Spamschutzregel 1024
+/^From:.*Versicherungs Dienst/  	REJECT Header-Spamschutzregel 1023
+/^From:.*soft-cd.com/			REJECT Header-Spamschutzregel 1022
+/^From: "Oxford Business News" <info@oxford-bn.org>/	REJECT Header-Spamschutzregel 1021
+/^Subject: =?iso-8859-1?Q?Leider_st=F6?= =?iso-8859-1?Q?ren_Sie.?=/	REJECT Header-Spamschutzregel 1020
+/^From:.*Elena.*@eposta.ru/		REJECT Header-Spamschutzregel 1019
+/^Subject:.*Results 2008 !/		REJECT Header-Spamschutzregel 1018
+/^From: Sponsor Lotto/			REJECT Header-Spamschutzregel 1017
+/^From:.*nodiet@web.de/			REJECT Header-Spamschutzregel 1016
+/^From:.*edirects.com/                  REJECT Header-Spamschutzregel 1015
+/^Subject:.*WINNING NOTIFICATION!!!/		REJECT Header-Spamschutzregel 1014
+/^Subject:.*Wir wissen was Frauen wollern/         REJECT Header-Spamschutzregel 1013
+/^From:.*newscd\.org/			REJECT Header-Spamschutzregel 1012
+/^From:.*mms-und-sms-gutschein.com/	REJECT Header-Spamschutzregel 1011
+/^Subject:.*CONFIRM YOUR WINNING/	REJECT Header-Spamschutzregel 1010
+/^Subject:.*Gratisaktion - Du wurdest ausgewaehlt unseren neuen SMS/	REJECT Header-Spamschutzregel 1009
+/^From:.*Seitensprung/			REJECT Header-Spamschutzregel 1008
+/^Received:.*germans-mailc.com/		REJECT Header-Spamschutzregel 1007: Lisa-Schindler-Spam 
+/^Received:.*stienitzsee.info/		REJECT Header-Spamschutzregel 1006
+/^Subject: Bonus 555eu/				REJECT Header-Spamschutzregel 1005
+/^Subject: *(ATTN|TO) *:.*SALES? *MANAGER/i	REJECT Header-Spamschutzregel 1004
+/^Subject:.*Take this postcard now!/	REJECT Header-Spamschutzregel 1003
+/^Subject:.*FUXIN/			REJECT Header-Spamschutzregel 1002
+/^From:.*marion.backera/		REJECT Header-Spamschutzregel 1001
+/^Subject:.*kein spam. aber eine Antwort auf ihre Fragen/	REJECT Header-Spamschutzregel 1000
+
+
+
+
+# Nazi-Spam-Welle mit Hetze
+
+########################################
+if /^Subject:/i
+
+/^Subject: 4,8 Mill\. Osteuropaeer durch Fischer-Volmer Erlass/	REJECT Header-Spamschutzregel Nazi Spam
+/^Subject: Auf Streife durch den Berliner Wedding/	REJECT Header-Spamschutzregel Nazi Spam
+/^Subject: Auslaender bevorzugt/			REJECT Header-Spamschutzregel Nazi Spam
+/^Subject: Auslaenderpolitik/				REJECT Header-Spamschutzregel Nazi Spam
+/^Subject: Deutsche werden kuenftig beim Arzt abgezockt/	REJECT Header-Spamschutzregel Nazi Spam
+/^Subject: Du wirst zum Sklaven gemacht\!\!\!/		REJECT Header-Spamschutzregel Nazi Spam
+/^Subject: Graeberschaendung auf bundesdeutsche Anordnung/	REJECT Header-Spamschutzregel Nazi Spam
+/^Subject: Hier sind wir Lehrer die einzigen Auslaender/	REJECT Header-Spamschutzregel Nazi Spam
+/^Subject: Paranoider Deutschenmoerder kommt in Psychiatrie/	REJECT Header-Spamschutzregel Nazi Spam
+/^Subject: Tuerkei in die EU/				REJECT Header-Spamschutzregel Nazi Spam
+/^Subject: Verbrechen der deutschen Frau/		REJECT Header-Spamschutzregel Nazi Spam
+/^Subject:.*Skandal in Berlin/ 				REJECT Header-Spamschutzregel JPBERLIN-14
+/^Subject:.*Auslaendergewalt: Herr Rau, wo waren Sie?/	REJECT Header-Spamschutzregel JPBERLIN-15
+/^Subject:.*Bankrott des Gesundheitswesens durch Auslaender!/	REJECT Header-Spamschutzregel JPBERLIN-16
+/^Subject:.*Wer an ein Tabu ruehrt, muss und darf vernichtet werden/	REJECT Header-Spamschutzregel JPBERLIN-17
+/^Subject:.*EU Beitritt der Tuerkei/	REJECT Header-Spamschutzregel JPBERLIN-18
+/^Subject:.*Bin ich zu weltfremd.*Ich glaube wohl kaum/ REJECT Header-Spamschutzregel JPBERLIN-19
+/^Subject:.*Die Deform der sozialen Ordnung/      	REJECT Header-Spamschutzregel JPBERLIN-20
+/^Subject:.*Moschee-Bau in Deutschland/			REJECT Header-Spamschutzregel JPBERLIN-21
+/^Subject:.*Augen auf.*So sieht es aus/			REJECT Header-Spamschutzregel JPBERLIN-22
+/^Subject:.*Paradies Bundesrepublik - Rente fuer die Welt/	REJECT Header-Spamschutzregel JPBERLIN-23
+/^Subject:.*Libanesen in Berlin/			REJECT Header-Spamschutzregel JPBERLIN-24
+/^Subject:.*Garather klagen ueber eskalierende Gewalt im Stadtteil!/	REJECT Header-Spamschutzregel JPBERLIN-24
+/^Subject:.*Auslaender erschleichen sich zunehmend Sozialleistungen/	REJECT Header-Spamschutzregel JPBERLIN-25
+/^Subject:.*Auslaenderkriminalitaet steigt weiter!/	REJECT Header-Spamschutzregel JPBERLIN-26
+/^Subject:.*Das kann unmoeglich sein -Leserbrief/	REJECT Header-Spamschutzregel JPBERLIN-27
+/^Subject:.*Nein zum Zuwanderungsgesetz !/		REJECT Header-Spamschutzregel JPBERLIN-28
+/^Subject:.*Skandalurteil in Darmstadt/			REJECT Header-Spamschutzregel JPBERLIN-29
+/^Subject:.*Auf Kosten der deutschen Beitragszahler und Rentner!/	REJECT Header-Spamschutzregel JPBERLIN-30
+/^Subject:.*Wir haben die Auslaender doch geholt/	REJECT Header-Spamschutzregel JPBERLIN-31
+/^Subject:.*TUERKEN-TERROR AM HIMMELFAHRTSTAG/		REJECT Header-Spamschutzregel JPBERLIN-32
+/^Subject:.*MULTI-KULTI-BANDE TYRANNISIERTE MITSCHUELER/	REJECT Header-Spamschutzregel JPBERLIN-33
+/^Subject:.*ASYLANTEN BEGRABSCHTEN DEUTSCHES MAEDCHEN/	REJECT Header-Spamschutzregel JPBERLIN-34
+/^Subject:.*Was Deutschland braucht, sind deutsche Kinder!/	REJECT Header-Spamschutzregel JPBERLIN-35
+/^Subject:.*Diplomatische Zensur/	REJECT Header-Spamschutzregel JPBERLIN-36
+/^Subject:.*EU gibt Erwerbslosen volle Freizuegigkeit/	REJECT Header-Spamschutzregel JPBERLIN-37
+/^Subject:.*Richter unterstuetzt kriminelle Auslaenderin/	REJECT Header-Spamschutzregel JPBERLIN-38
+/^Subject:.*Auslaenderanteile in Schweizer Gefaengnissen/	REJECT Header-Spamschutzregel JPBERLIN-39
+/^Subject:.*Augen auf! (So sieht es aus!)/		REJECT Header-Spamschutzregel JPBERLIN-40
+/^Subject:.*Neue Voelkerwanderung droht!/		REJECT Header-Spamschutzregel JPBERLIN-41
+/^Subject:.*Client TOS Notification/			REJECT Header-Spamschutzregel JPBERLIN-50
+/^Subject:.* CIALIS /					REJECT Header-Spamschutzregel JPBERLIN-51: Cialis-Keyword
+/^Subject:.*Postbank Sicherheitsaktualisierung/		REJECT Header-Spamschutzregel JPBERLIN-52
+/^Subject:.*Sicherheitsaktualisierung/			REJECT Header-Spamschutzregel JPBERLIN-53
+/^Subject:.*Deutsche-bank Sicherheitsaktualisierung/	REJECT Header-Spamschutzregel JPBERLIN-54
+/^Subject:.*internet.*pharmacy/  	REJECT Header-Spamschutzregel JPBERLIN-55
+/^Subject:.*Affordable Premade Logos/	REJECT Header-Spamschutzregel JPBERLIN-56
+/^Subject:.*Best prices.*on the net/	REJECT Header-Spamschutzregel JPBERLIN-57
+/^Subject:.*V.?i.?a.?g.?r.?a/		REJECT Header-Spamschutzregel JPBERLIN-58: Viagra-Keyword
+#/^Subject:.*X.?a.?n.?a.?x/		REJECT Header-Spamschutzregel JPBERLIN-59: Xanax-Keyword
+/^Subject:.*Phentermine/		REJECT Header-Spamschutzregel JPBERLIN-60
+/^Subject:.*Phentermine/		REJECT Header-Spamschutzregel JPBERLIN-60
+/^Subject:.*Die Sahne tropft heraus/	REJECT Header-Spamschutzregel JPBERLIN-61
+/^Subject:.* Rolex /			REJECT Header-Spamschutzregel JPBERLIN-62
+/^Subject:.*Rechnung Online Monat November 2004/	REJECT Header-Spamschutzregel JPBERLIN-63 Trojaner-Alarm
+/^Subject:.*Replica Watch Models/ 	REJECT Header-Spamschutzregel JPBERLIN-64
+/^Subject:.*Sehr geehrter Postbankkunde/	REJECT Header-Spamschutzregel JPBERLIN-65
+/^Subject:.*AIR ANTALYA/		REJECT Header-Spamschutzregel JPBERLIN-66
+/^Subject:.*Search engines - submit/	REJECT Header-Spamschutzregel JPBERLIN-12
+/^Subject:.*Search engine traffic/	REJECT Header-Spamschutzregel JPBERLIN-13
+/^Subject: More efficient than via-gra/	REJECT Header-Spamschutzregel 22
+/^Subject: Mailadresse unbekannt/	REJECT Header-Spamschutzregel 27
+/^Subject:.*SARS: Viet Nam removed from list of affected countries.*/ REJECT Header-Spamschutzregel 29
+/^Subject:.*Wichtig !!! Die Telefonnummer die du haben wolltest/ REJECT Header-Spamschutzregel 31
+/^Subject:.*Weihnachtsbaeume ab EURO.*/	REJECT Header-Spamschutzregel 32
+/^Subject:.*Neue Version zum downloaden.*/	REJECT Header-Spamschutzregel 33
+/^Subject:.*Frants for.*/	REJECT Header-Spamschutzregel 34
+/^Subject:.*FREEE.*/	REJECT Header-Spamschutzregel 35
+/^Subject:.*Webdesign leicht gemacht.*/	REJECT Header-Spamschutzregel 36
+/^Subject:.*Check this Message Board Out.*/ REJECT Header-Spamschutzregel 37
+/^Subject: SAVE GERMANY VOTE STOIBER.*/ REJECT Header-Spamschutzregel 38
+
+Endif
+####################################
+
+
+
+#/^Return-Path: <MAILER-DAEMON>/    	REJECT Header-Spamschutzregel 20
+/^Received:.*luftmensch.com/		REJECT Header-Spamschutzregel 28
+/^Delivered-To:.*jo@pcj.mlbc.test/      REJECT Header-Spamschutzregel 
+/From:.*Mandy Tweed/	REJECT Header-Spamschutzregel 39
+/Received: from privat .*.aol.com/	REJECT Header-Spamschutzregel 40
+/Received:.*tpg_exsrvr.thepowellgroup.com/	REJECT Header-Spamschutzregel 41
+/Received: from mx?.eudoramail.com/	REJECT Header-Spamschutzregel 42
+/Flashmail\.com/	REJECT Header-Spamschutzregel 44
+
+
+
+#	
+# Checks gesammelt aus dem Netz von	
+# http://www.hispalinux.es/~data/postfix/	
+#	
+
+######################################
+If /^Subject:/i
+
+/^Subject: FW: Warm this world by truely Love$/	REJECT Header-Spamschutzregel 51
+/^Subject:.*Fwd:Peace BeTweeN AmeriCa and IsLaM!/ REJECT Header-Spamschutzregel 58
+/^Subject: ILOVEYOU/                           REJECT Header-Spamschutzregel 60
+# Regel 61 rausgenommen -- zu allgemein. 20080128 / phei
+#/^Subject: (Re: )*Important Message From/      REJECT Header-Spamschutzregel 61
+/^Subject: (Re: )*BubbleBoy is back!/          REJECT Header-Spamschutzregel 62
+/^Subject: Accept Credit Cards/                REJECT Header-Spamschutzregel 63
+/^Subject: How Soon Are You Going To Retire\?/ REJECT Header-Spamschutzregel 64
+/^Subject: \[ADV:/                            REJECT Header-Spamschutzregel 65
+/^Subject: ADV:/                               REJECT Header-Spamschutzregel 66
+/^Subject: Snowhite and the Seven Dwarfs - The REAL story!/    REJECT Header-Spamschutzregel 67
+/^Subject: Are you losing sleep over debt\?/   REJECT Header-Spamschutzregel 68
+/^Subject: a stock that makes money/           REJECT Header-Spamschutzregel 69
+/^Subject: high earnings may soar/             REJECT Header-Spamschutzregel 70
+/^Subject: See the VIDEO Britney/              REJECT Header-Spamschutzregel 71
+/^Subject: FW: VIDEOS OF BRITNEY/              REJECT Header-Spamschutzregel 72
+/^Subject: STOLEN HARDCORE VIDEO/              REJECT Header-Spamschutzregel 73
+/^Subject: NEW CASH PROGRAM/                 REJECT Header-Spamschutzregel 74
+/^Subject: Hot Celebs 100% Exposed!/                REJECT Header-Spamschutzregel 75
+/^Subject: Make It Happen/                 REJECT Header-Spamschutzregel 76
+/^Subject: If you need extra money...read this!/ REJECT Header-Spamschutzregel 77
+/^Subject: Recieve A Free Quote/                REJECT Header-Spamschutzregel 78
+/^Subject: We Have Low Mortgage Rates!!!/        REJECT Header-Spamschutzregel 79
+/^Subject: Re: travel confirmation/                REJECT Header-Spamschutzregel 80
+/^Subject: Receive a FREE SAMPLE of Viagra for Women/ REJECT Header-Spamschutzregel 81
+/^Subject: DOUBLE YOUR BREAST SIZE! GUARANTEED/        REJECT Header-Spamschutzregel 82
+/^Subject: Ground Breaking Business "Starts Today"/ 	REJECT Header-Spamschutzregel 83
+/^Subject: AS SEEN ON T\.V/ 	REJECT Header-Spamschutzregel 84
+/^Subject: 99 Million Email Addresses - \$99/ 	REJECT Header-Spamschutzregel 85
+/^Subject: 50 Million Fresh Email Addresses/ 	REJECT Header-Spamschutzregel 87
+/^Subject: 200 Million Email Addresses - \$149/ 	REJECT Header-Spamschutzregel 88
+/^Subject: Get Viagra Online Now !!!/ 	REJECT Header-Spamschutzregel 89
+/^Subject: Boost Your Windows Reliability/ 	REJECT Header-Spamschutzregel 90
+/^Subject: I know what you've been doing/ 	REJECT Header-Spamschutzregel 91
+/^Subject: Hot Penny Stock Pick/ 	REJECT Header-Spamschutzregel 92
+/^Subject: Need a great deal on a home loan\?/ 	REJECT Header-Spamschutzregel 93
+/^Subject: I used to be in debt too!/ 	REJECT Header-Spamschutzregel 94
+/^Subject: Work less, make more/ 	REJECT Header-Spamschutzregel 95
+/^Subject: Drive Your Web Counter Ballistic/ 	REJECT Header-Spamschutzregel 96
+/^Subject: Re: have you considered doing this\?/ 	REJECT Header-Spamschutzregel 97
+/^Subject: Work from home and get paid!/ 	REJECT Header-Spamschutzregel 98
+/^Subject: Enter To Win One of 25 Dream Vacations!!/ 	REJECT Header-Spamschutzregel 99
+/^Subject: Do You Accept Credit Cards/ 	REJECT Header-Spamschutzregel 100
+/^Subject: Home Owners ONLY/ 	REJECT Header-Spamschutzregel 101
+/^Subject: Your Credit Info/ 	REJECT Header-Spamschutzregel 102
+/^Subject: Do you owe money\?/ 	REJECT Header-Spamschutzregel 103
+/^Subject: Need a Home Loan? We Can Help!!/ 	REJECT Header-Spamschutzregel 104
+/^Subject: stock alert/ 	REJECT Header-Spamschutzregel 105
+/^Subject: contact lenses/ 	REJECT Header-Spamschutzregel 106
+/^Subject: ENLARGE YOUR PACAKGE GUARANTEED/ 	REJECT Header-Spamschutzregel 107
+/^Subject: ENLARGE YOUR PACKAGE GUARANTEED/ 	REJECT Header-Spamschutzregel 108
+/^Subject: We purchase uncollected Judicial Judgments/ 	REJECT Header-Spamschutzregel 109
+/^Subject: Increase Your Gas Mileage by up to 27%!/ 	REJECT Header-Spamschutzregel 112
+/^Subject: Willow Flower Herb For Prostate Problems\./ 	REJECT Header-Spamschutzregel 113
+/^Subject: NEW Increase Your Gas Mileage by 27%/ 	REJECT Header-Spamschutzregel 114
+/^Subject: The easiest way to make money on the internet!/ 	REJECT Header-Spamschutzregel 115
+/^Subject: Re: think about this\.\.\./ 	REJECT Header-Spamschutzregel 116
+/^Subject: think about this\.\.\./ 	REJECT Header-Spamschutzregel 117
+/^Subject: At Last, Herbal V, the All Natural Alternative!/ 	REJECT Header-Spamschutzregel 119
+/^Subject: Make Money In Your Sleep! / 	REJECT Header-Spamschutzregel 120
+/^Subject: FREE Satellite TV System/ 	REJECT Header-Spamschutzregel 122
+/^Subject: About your site/ 	REJECT Header-Spamschutzregel 124
+/^Subject: No Deposit VISA or Master Card!/ 	REJECT Header-Spamschutzregel 126
+/^Subject: FREE Auto Insurance Quote!/ 	REJECT Header-Spamschutzregel 127
+/^Subject: Need money for college\?/ 	REJECT Header-Spamschutzregel 131
+/^Subject:(\s+\[[^]]*\])?\s+[-\.{<]*ADV(ertisement)?[-:\.>}\s]/ 	REJECT Header-Spamschutzregel 153
+#/^Subject:.*\s+ADV$/ 	REJECT Header-Spamschutzregel 154
+/^Subject: I viewed your site-/ 	REJECT Header-Spamschutzregel 155
+/^Subject:.*Millions?\s*(E?-?MAIL\s*)?ADDRESS/ 	REJECT Header-Spamschutzregel 156
+/^Subject:.*(are you (being investigated|in need of a lifestyle)|Free 1 Ounce Silver Coin|All foreign residents.  Check out this offer|CAN YOU ADVERTISE TO OVER 20 MILLION E-MAIL ADDRESSES\??|DSL - FREE DSL Modem! FREE Install! NO Contract!|We want to give you a Brand New FREE Motorola Pager|FREE Motorola Pager|Cellphone Signal Booster|You('| ha)?ve qualified for)/ 	REJECT Header-Spamschutzregel 157
+# /^Subject:.*[ ._]{5,}[^0 ._]\d+$/ 	REJECT Header-Spamschutzregel 160
+# /^Subject:.*[ ._]{5,}\[[^ ]+\]$/ 	REJECT Header-Spamschutzregel 161
+/^Subject:.*\sTime[: ]+\d+:\d+:\d+ [AP]M\s*$/i 	REJECT Header-Spamschutzregel 162
+/^Subject: Snowhite and the Seven Dwarfs - The REAL story!/ 	REJECT Header-Spamschutzregel 177
+/^Subject: new photos from my party!/ 	REJECT Header-Spamschutzregel 180
+#/^Subject:.*=\?(euc-kr|ks_c_5601-1987)\?/ 	REJECT Header-Spamschutzregel 200
+/^Subject: Liebe freunde, es tropft wieder/ 	REJECT Header-Spamschutzregel 201
+/^Subject: The best gift a wife or girlfriend could ever ask for/		REJECT Header-Spamschutzregel 202
+/^Subject: Increase your drive, stamina, size and performance.. reach your potential!/			REJECT Header-Spamschutzregel 203
+/^Subject: Discover your true sexual potential/ 							REJECT Header-Spamschutzregel 204
+/^Subject: .*you could need it Pharamaceu tical/							REJECT Header-Spamschutzregel 205
+/^Subject: Nearly 65% of women claim they wish their lover was more adept.. let us help/		REJECT Header-Spamschutzregel 206
+/^Subject: Increased spending on homeland security has created incredible opportunity/			REJECT Header-Spamschutzregel 207
+/^Subject: The security explosion/									REJECT Header-Spamschutzregel 208
+/^Subject: Ermittlungsverfahren gegen Sie.*/	REJECT Header-Spamschutzregel 210
+/^Subject: Bekommen Sie Uhren.*/			REJECT Header-Spamschutzregel 211
+Endif
+#################################################
+
+
+/^To: <ABALTAS@europarl.eu.int>/ REJECT Header-Spamschutzregel 53
+/^To: ACERCAS@europarl.eu.int/	REJECT Header-Spamschutzregel 54
+/^To: infomail@recurrent.com/ REJECT Header-Spamschutzregel 57
+/^X-Spanska:/                               REJECT Header-Spamschutzregel 59
+/^From steve-larson1@execs.com/ 	REJECT Header-Spamschutzregel 110
+/^From @execs.com*/ 	REJECT Header-Spamschutzregel 111
+/^From: enews@uscav.com/ 	REJECT Header-Spamschutzregel 118
+/weatherbug\.com/ 	REJECT Header-Spamschutzregel 123
+/virtumundo\.com/ 	REJECT Header-Spamschutzregel 125
+/thesexymessage\.com/ 	REJECT Header-Spamschutzregel 128
+/insideporn\.net/ 	REJECT Header-Spamschutzregel 129
+/shoplet\.com/ 	REJECT Header-Spamschutzregel 132
+/real-net\.net/ 	REJECT Header-Spamschutzregel 133
+/bizinfo/ 	REJECT Header-Spamschutzregel 134
+/servicenetbest\.com/ 	REJECT Header-Spamschutzregel 135
+/petter_zhang/ 	REJECT Header-Spamschutzregel 137
+/^(To|From|Cc|Reply-To):.*Investor Alert/ 	REJECT Header-Spamschutzregel 142
+/^(To|From|Cc|Reply-To):.*friend@(public.com|localhost.net)/ 	REJECT Header-Spamschutzregel 143
+/^(To|From|Cc|Reply-To):.*[ <]\d+@(onramp|prodigy|uu)\.net/ 	REJECT Header-Spamschutzregel 145
+/^(To|From|Cc|Reply-To):.*@funstuff2000.net/ 	REJECT Header-Spamschutzregel 146
+/^(To|From|Cc|Reply-To):.*(infowatch\.net|nakedmail\d?\.com)/ 	REJECT Header-Spamschutzregel 147
+/^(To|From|Cc|Reply-To):.*customer@aol/ 	REJECT Header-Spamschutzregel 148
+/^To: ListMembers@theneteffect/ 	REJECT Header-Spamschutzregel 149
+/^Reply-To:.*@(china\.com|rever-dreaming\.com|btamail\.net\.cn|amdpress\.com|nakedmail\d?\.com|big-salesfor\.you-now\.net)/ 	REJECT Header-Spamschutzregel 150
+
+# X-Bulkmail rausgenommen, da dies von UCI-Kinowelt benutzt wird :-(
+#/^X-(Advertisement|\d|UltraMail|Bulkmail): / 	REJECT Header-Spamschutzregel 166
+/^X-(Advertisement|\d|UltraMail): / 	REJECT Header-Spamschutzregel 166
+
+/^(Received|Message-Id|X-(Mailer|Sender)):.*\b(E-Broadcaster|Emailer Platinum|eMarksman|Extractor|e-Merge|from stealth[^.]|Global Messenger|GroupMaster|Mailcast|MailKing|Match10|MassE-Mail|massmail\.pl|News Breaker|Powermailer|Quick Shot|Ready Aim Fire|WindoZ|WorldMerge|Yourdora)\b/ 	REJECT Header-Spamschutzregel 167
+/^X-Mailer:.*\b(Aristotle|Avalanche|Blaster|Bomber|DejaVu|eMerge|Extractor|UltraMail|Sonic|Floodgate|GeoList|Mach10|MegaPro|Aureate|MultiMailer|Bluecom|Achi-Kochi Mail|Direct Email|Andrew's SuperCool Blastoise|MailerGear|Advanced Mass Sender|SpireMail|MailWorkZ|UltimDBMail|Mabry)\b/ 	REJECT Header-Spamschutzregel 168
+/^X-EM-(Version|Registration):/ WARN	TEST DER X-EM-Header
+/^X-AD2000-(Serial|Register):/ 	REJECT Header-Spamschutzregel 170
+/^X-Server: Advanced Direct Remailer/ 	REJECT Header-Spamschutzregel 171
+# spamware mistake.  real header is "Comments:"	
+/^Comment: Authenticated sender is/ 	REJECT Header-Spamschutzregel 174
+# viruses	
+/^(To|From|Cc|Reply-To):.*@sexyfun.net/ 	REJECT Header-Spamschutzregel 178
+/^Content-Disposition: Multipart message/i 	REJECT Header-Spamschutzregel 179
+# sendmail Received: header overflow	
+/^Received:.*\.{50,}/ 	REJECT Header-Spamschutzregel 183
+# Date headers do not end in AM or PM.
+/^Date:.* [AP]M/i 	REJECT Header-Spamschutzregel 193
+# invalid timezone in Date header	
+/^Date:.*[+-](1[4-9]|2\d)\d\d$/ 	REJECT Header-Spamschutzregel 195
+/^From:.*icyhot.bakas24.de/ 		REJECT Header-Spamschutzregel 209

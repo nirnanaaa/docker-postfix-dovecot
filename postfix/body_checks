@@ -1,0 +1,695 @@
+# Version 4.0
+#
+# Das Postfix-Buch - Sichere Mailserver mit Linux
+# http://www.postfixbuch.de
+#
+# Heinlein Professional Linux Support GmbH
+# http://www.heinlein-support.de
+#
+# Downloadquelle dieser Datei: http://www.postfixbuch.de/web/service/checks/
+#
+#
+# Verwendung der Filtersammlung auf eigene Gefahr.
+#
+# Es handelt sich dabei um einen tagesaktuellen Auszug der beim
+# ISP "JPBerlin.de" genutzten Filterregeln. Bitte pruefen Sie vor einem
+# Einsatz bei Ihnen ganz genau, ob diese Regeln noch aktuell und sinnvoll
+# sind und ob Sie sie einsetzen moechten!
+#
+#
+# Setzen Sie in /etc/postfix/main.cf einfach
+#
+# body_checks = pcre:/etc/postfix/body_checks oder
+# oder
+# body_checks = regexp:/etc/postfix/body_checks
+#
+# und fuehren Sie "rcpostfix reload" aus.
+#
+# Tipp: pcre ist ein Drittel schneller als regexp!
+#
+#
+
+#
+# Die Nummern hinter dem REJECT tauchen spaeter iM SMTP-Error oder im Log
+# auf, um die Filter-Regel wiederzufinden, die den Block ausgeloest hat.
+# Es kann stattdessen auch einfacher Text benutzt werden.
+#
+
+
+#
+#
+# Tagesaktuelle, nur voruebergehende Regelungen:
+# ===============================================
+# [Immer mit Timestamp (!) und ggf. Ticket-Nummer eintragen!]
+#
+
+#
+#
+# Dauerhaft genutzte Regelungen:
+# ===============================================
+# [Immer mit aufsteiger Nummer sauber eintragen!]
+#
+#
+/http:\/\/www.direkt-sicher.com\/starten\/privatkunde/	REJECT	Body-Spamschutz 1157
+/Unser ING-DIBA  Sicherheits Bereich investiert sehr viel Zeit,/	REJECT Body-Spamschutz 1156
+/ürzlich zeigen unsere Aufzeichnungen, dass Ihr Postbank-Konto möglich durch einen Dritten unbefugten Zutritt./	REJECT Body-Spamschutzregel 1155
+/We are the department of Asian Domain Registration Service in China. Here I have something/	REJECT Body-Spamschutzregel 1154
+/schicken Sie bitte einen Brief auf Violet@arbeitdeutschland.com/	REJECT Body-Spamschutzregel 1153
+/Dear RandomForename_/	REJECT Body-Spamscutzregel 1152
+/http:\/\/defiteq.com\/qms\/upload/	REJECT Body-Spamscutzregel 1151
+/mail.iphone.mn/	REJECT Body-Spamscutzregel 1150
+/http:\/\/www.safe-slh.com/ REJECT Body-Spamschutzregel 1149
+/Sie konnen Ihre Postsendung in unserer Postabteilung personlich kriegen/ REJECT Body-Spamschutzregel 1148
+/Sie sollen dieses Postetikett drucken lassen/ REJECT Body-Spamschutzregel 1147
+/Wenn dies nicht sofort machen Sie Ihre E-Mail-Adresse deaktiviert von unserem Server\./ REJECT Body-Spamschutzregel 1146
+/^Message-ID:*@vps332995.netsons.net/	REJECT	Body-Spamschutzregel 1145
+/dildodaddy/ REJECT Body-Spamschutzregel 1144
+/mehreren fehlgeschlagenen TAN-Eingeben/ REJECT Body-Spamschutzregel 1143
+/filename\=\"c.g.euromilion.pdf\"/	REJECT	Body-Spamscutzregel 1142
+/^Bei Interesse bitten wir um folgende$/	REJECT Body-Spamscutzregel 1141
+/palmandmore\.de/ REJECT Body-Spamschutzregel 1140
+/kundenverifikationservice\.u2m\.ru\/VERIFY\.PHP REJECT/ Body-Spamschutzregel 1139
+/co.cc\/aff\/item.php\?usn\=(aeb1|dap1|dvg1)\&i\=it\_ep\&e\=admin\@groupon.de/	REJECT	Body-Spamschutzregel 1138
+/You Are Guaranteed To Get Paid Instantly For Each Email You Process!/	REJECT	Body-Spamschutzregel 1137
+/I (talk|speak) 2 \'languages\'. Now i\'m 24. I/	REJECT	Body-Spamschutzregel 1136
+/My nickname \"Kuma\"\! \:\) I/	REJECT	Body-Spamschutzregel 1135
+/http:\/\/free.fr\/support\/verification\/compte\//	REJECT	Body-Spamschutzregel 1134
+/http:\/\/sonofages.free.fr\/images\/LogoCreditMutuel.png/ REJECT	Body-Spamschutzregel 1133
+/ucc.edu.ni/	REJECT	Body-Spamschutzregel 1132
+/7figureincome\.php/	REJECT Body-Spamschutzregel 1131
+/Cher Client Verified by Visa/	REJECT	Body-Spamschutzregel 1130
+/^From: "Topillen Apotheke" / REJECT Body-Spamschutzregel 1129
+/^Aufgrund mehrerer Phishing Versuche, unsere Visa und Mastercard/ REJECT Body-Spamschutzregel 1128
+/^ Phishing Departament/                        REJECT Body-Spamschutzregel 1127
+/We wish to invest between $5Million-$100Million in any viable projects/ REJECT Body-Spamschutzregel 1126
+/God bless you as you get back to me/   REJECT  Body-Spamschutzregel 1125
+/www.(b|B)ien(e|E)tremag.com/	REJECT	Body-Spamschutzregel 1124
+/Sehr geehrte Sparkasse Card/	REJECT	Body-Spamschutzregel 1123
+/zigaretten-discount.info/	REJECT	Body-Spamschutzregel 1122
+/zigaretten-discount\[punkt\]info/	REJECT	Body-Spamschutzregel 1121
+/Guten Tag Mitglied [0-9]{5}/	REJECT	Body-Spamschutzregel 1120
+/elenx.innovacon.com\/.e\/e.php/	REJECT	Body-Spamschutzregel 1119
+/www.sniperrs.de\/modules\/Forums\/admin/	REJECT	Body-Spamschutzregel 1118
+/boxneufnet.com\/id\/oragne.fr\/Identifiant/	REJECT	Body-Spamschutzregel 1117
+/www.colellsa.com\/img\/quienes\/pabo\/paypal-fr/	REJECT	Body-Spamschutzregel 1116
+/dekmor.cmu.ac.th\/sticker\/upload\/Logs\/Login\/webscrcmd/	REJECT	Body-Spamschutzregel 1115
+/ektoschronou.com/	REJECT	Body-Spamschutzregel 1114
+/ulouwaio.com/	REJECT	Body-Spamschutzregel 1113
+/logonature.com.nu/	REJECT	Body-Spamschutzregel 1112
+/suinlop.com/	REJECT Body-Spamschutzregel 1111
+/soudoorpo.com/	REJECT Body-Spamschutzregel 1110
+/GOOGLE AUSSTATTUNGSFONDS 20.?.? GEWINNER ANMELDEFORMULAR FUER ZAHLUNG/	REJECT Body-Spamschutzregel 1109
+/Anbieter: Privacy GG Limited, 99 Albert Street, Belize City, CA/ 	REJECT Body-Spamschutzregel 1108
+/^Die Nachricht wurde durch Interads 24 Ltd/	REJECT Body-Spamschutzregel 1107
+/www.sommer-mit-kollegen.de/	REJECT Body-Spamschutzregel 1006
+# Ein Spammer versenden immer Austragungslinks, die auf "/ausa" enden:
+/^www.*\/ausa$/			REJECT Body-Spamschutzregel 1105
+/KlickTel Telefonbuch OEM/	REJECT Body-Spamschutzregel 1104
+/www.klicktel24.org/		REJECT Body-Spamschutzregel 1103
+/Klicken Sie hier, und fühlen Sie sich endlich gut behandelt:/	REJECT Body-Spamschutzregel 1102
+/maryjanemax@yahoo.co.uk/	REJECT Body-Spamschutzregel 1101
+/http.*muqugeh\.cn/ 		REJECT Body-Spamschutzregel 1100
+/Bei uns bekommen Sie Ihren Kredit schnell, unbürokratisch, diskret und natürlich ohne Bankauskunft./	REJECT Body-Spamschutzregel 1099
+/INTERNATIONAL LOTTERIE PROMOTION SPIELGEMEINSCHAFT/	REJECT Body-Spamschutzregel 1098 
+/Leider st=F6ren Sie.=20/	REJECT Body-Spamschutzregel 1097
+/Sie haben dieses Email erhalten, weil Sie im Newsletter von Promohouse Ltd eingetragen sind/	REJECT Body-Spamschutzregel 1096
+/ATTN: Beneficiar/	REJECT Body-Spamschutzregel 1095
+/www.hedonismails.de/			REJECT Body-Spamschutzregel 1094
+/www.globadressen.(com|net|org|info)/	REJECT Body-Spamschutzregel 1093
+/elegalal.nextmail.ru/				REJECT Body-Spamschutzregel 1092
+/http:\/\/www.switzerlandpussy.eu/					REJECT Body-Spamschutzregel 1082
+/Die jungen Girls fliegen nur so auf die langen/			REJECT Body-Spamschutzregel 1081
+/\*\*\*\* Commercial use of this software is prohibited \*\*\*\*/	REJECT Body-Spamschutzregel 1080
+/I finded your email in internet and I decide to ask you for help/	REJECT Body-Spamschutzregel 1079
+/Details und moegliche Schritte zur Entsperrung finden Sie/ 	REJECT Body-Spamschutzregel 1078
+/^Amount Won:/				REJECT Body-Spamschutzregel 1077
+/AWARD WINNING NOTICE/i			REJECT Body-Spamschutzregel 1076
+/mixvarejo.com/				REJECT Body-Spamschutzregel 1075
+/www.global-db.(com|net|org)/		REJECT Body-Spamschutzregel 1074
+/^I am Barrister/			REJECT Body-Spamschutzregel 1073
+/respublica@gaucherepublicaine.org/ 	REJECT Body-Spamschutzregel 1072
+/NEU - Vi Super Active/ 		REJECT Body-Spamschutzregel 1071
+/anhaltende Versagensangste und wiederholte peinliche Situationen/	REJECT Body-Spamschutzregel 1070
+/Schulfreunde Vermittlungs Service AG/  REJECT Body-Spamschutzregel 1068
+/Multimedia Telegramm/  REJECT Body-Spamschutzregel 1067
+/http.*\.fdub\.biz/     REJECT Body-Spamschutzregel 1066
+/TanjaGuenther/	REJECT Body-Spamschutzregel 1065
+/www.bestnetz24.de\/letter\/ausgabe.php/	REJECT Body-Spamschutzregel 1064
+/www.db.?adressen.(com|net|org|info)/	REJECT Body-Spamschutzregel 1063
+/thomas@jthomas.es/	REJECT Body-Spamschutzregel 1062
+/Ihre Marketing Agentur Espa/	REJECT Body-Spamschutzregel 1061
+/www.pakandu.com/	REJECT Body-Spamschutzregel 1060
+/Glob.?.?.?(C|K)ontact.?.?.?Team/	REJECT Body-Spamschutzregel 1059
+/www.gc.?datenbaken.(com|net|org|info)/	REJECT Body-Spamschutzregel 1058
+/www.glc-?data.(com|net|org|info)/	REJECT Body-Spamschutzregel 1057
+/Global.?(C|K)ontact/i	REJECT Body-Spamschutzregel 1056
+/www.imarketing.com.br.remove/	REJECT Body-Spamschutzregel 1055 
+/Bestellen Sie jetzt und vergessen Sie Ihre Enttauschungen/     REJECT Body-Spamschutzregel 1054
+/Online Apotheke - original Qualitaet/  REJECT Body-Spamschutzregel 1053
+/Wir wissen was Frauen wollern/         REJECT Body-Spamschutzregel 1052
+/Viiiiaaaaaagra/        REJECT Body-Spamschutzregel 1051
+/Web: www.eurasianpages. com/	REJECT Body-Spamschutzregel 1050
+/^Firma Global Contact bietet Ihnen/	REJECT Body-Spamschutzregel 1049
+/www.g-adressen.net/	REJECT Body-Spamschutzregel 1048
+/NIEMALS geben Sie Ihre Passw.rter an niemanden NUR und melden Sie sich/	REJECT Body-Spamschutzregel 1047 Haspa-Pishing
+/www.loteria.es/	REJECT Body-Spamschutzregel 1046
+/Girls!  Deveelop your sexual reelationship and get even MORE pleasurre!/	REJECT Body-Spamschutzregel 1045
+# Nigeria-Spam / phei 20080209
+/Ich bin bei einer routinen Überprüfung in meiner Bank/		REJECT Body-Spamschutzregel 1044
+/Ich vermute das diese E-Mail eine Überraschung für Sie sein wird/	REJECT Body-Spamschutzregel 1043
+/Ich bin bei einer routinen Überprüfung in meiner Bank /	REJECT Body-Spamschutzregel 1042
+# Versendet UBE/UCE unter verbraucher@wichtig.ms
+/^Ein Dienst der IT4YOU AG, Friedrichstrasse 171, Berlin - Mitte als/	REJECT Body-Spamschutzregel  1041
+# Versendet KlickTel UBE/UCE:   / phei 20080204
+/^www.cdtophit.org/					REJECT Body-Spamschutzregel 1040 
+/http:\/\/www\.doenertreff\.de/				REJECT Body-Spamschutzregel 1039 
+/Brauchen Sie noch einen Grund um zu Vegas VIP Casino/	REJECT Body-Spamschutzregel 1038
+/glob-contact.net$/					REJECT Body-Spamschutzregel 1037: glob-contact
+/^Ihr Glob-Kontakt-Team$/				REJECT Body-Spamschutzregel 1036: glob-contact
+/www.feilervision.de/   				REJECT Body-Spamschutzregel 1035: feilervision
+/DER INVESTORALARM!/i					REJECT Body-Spamschutzregel 1034
+/ES IST EIN UNGLAUBLICHES PROFITPOTENTIAL! VERLIERE DIESE CHANCE NICHT!/i	REJECT Body-Spamschutzregel 1033
+/LOTTERY AND GAMING INTERNET MESSAGE CENTRE/		REJECT Body-Spamschutzregel 1033
+/I work very hard every day to be able to buy necessities for my mother/	REJECT Body-Spamschutzregel 1032
+/THE FREELOTTO COMPANY/					REJECT Body-Spamschutzregel 1031
+/BreakingMrktNews/					REJECT Body-Spamschutzregel 1030
+/China Media Crop OTC.BB CHMD/				REJECT Body-Spamschutzregel 1029
+/Weltweit gilt das nummerierte TAN-Verfahren als eines der sicherste/	REJECT Body-Spamschutzregel 1028: Postbank-Pishing
+/^Marion Beckera/					REJECT Body-Spamschutzregel 1027
+/Zwecks abschlie&szlig;ende Zustimmung f&uuml;r deine Verhandlung zur/	REJECT Body-Spamschutzregel 1026
+/annullieren deine on-line &Uuml;bertragung&reg; Dienstleistungen./	REJECT Body-Spamschutzregel 1025 
+/www.internetloginuser.info/				REJECT Body-Spamschutzregel 1024
+/realsevgi.com/						REJECT Body-Spamschutzregel 1023
+/Um mich zu entlasten, schicke ich Ihnen das (...) Foto wieder zurück./	REJECT Body-Spamschutzregel 1022 
+/Oder Ihr Provider hat die Mail falsch weiter geleitet!?/	REJECT Body-Spamschutzregel 1021 
+/Versatel-Attachment-Warning.txt/			REJECT Body-Spamschutzregel 1020
+/www=2Eanaforturizm=2Ecom/				REJECT Body-Spamschutzregel 1019
+/www.anaforturizm.com/					REJECT Body-Spamschutzregel 1018
+/The Jpberlin Support Team/				REJECT Body-Spamschutzregel 1017: Pishing-Mails
+/^jpberlin.de support team\./				REJECT Body-Spamschutzregel 1016: Pishing-Mails
+/You have successfully updated the password of your Jpberlin account/	REJECT Body-Spamschutzregel 1015 
+/www.ru4mailnow.com/					REJECT Body-Spamschutzregel 1014
+/EXPLOSIVE PICK FOR OUR MEMBERS/			REJECT Body-Spamschutzregel 1013
+/AntiVirus-System: Kein Virus erkannt/			REJECT Body-Spamschutzregel 1012
+/--- FIFA Fussball-Weltmeisterschaft 2006/		REJECT Body-Spamschutzregel 1011
+/ankara@ankararentacar.de/				REJECT Body-Spamschutzregel 1010
+/Replica Watch Models/					REJECT Body-Spamschutzregel 1009
+/Diadem Travel/						REJECT Body-Spamschutzregel 1008
+/Let the search engine experts compete/			REJECT Body-Spamschutzregel 1007
+/Wenn du sonst noch helfen willst, dann verschick diese Nachricht einfach so oft du willst./	REJECT Body-Spamschutzregel 1006
+/http:\/\/www.ehmig.net\/web_mailer/			REJECT Body-Spamschutzregel 1005
+/http:\/\/real.slon.biz/				REJECT Body-Spamschutzregel 1004
+#/im Zusammenhang mit dem Arbeitslosengeld II/		REJECT Body-Spamschutzregel 1003
+/www.inverz.org/					REJECT Body-Spamschutzregel 1002
+/www.inverz.net/					REJECT Body-Spamschutzregel 1001
+
+
+
+
+
+
+/We recommend you to follow the instructions in order to keep your computer safe./	REJECT Body-Spamschutzregel 1
+/Sieh Dir einfach mal ein Video an und mach dann gleich ein Treffen/	REJECT Body-Spamschutzregel 2
+#/money.*back.*guarant/					REJECT Body-Spamschutzregel 3
+/ CIALIS /						REJECT Body-Spamschutzregel 4
+/www.galamed.biz/		 	 	REJECT Body-Spamschutzregel 5
+/Starts working in less than 15 min./		REJECT Body-Spamschutzregel 6
+/Adipren720/		 	 		REJECT Body-Spamschutzregel 7
+/www.lending-home.com/		 	 	REJECT Body-Spamschutzregel 8
+/bigbonus-casino.com/		 	 	REJECT Body-Spamschutzregel 9
+/Ich hab die ultimative Seite.*dich, klick doch mal an!/		 	 	REJECT Body-Spamschutzregel 10
+/www.server42.com/		 	 	REJECT Body-Spamschutzregel 11
+/seo-profits.com/		 	 	REJECT Body-Spamschutzregel 12
+/Have a great web site, but no one knows it even/		 	 	REJECT Body-Spamschutzregel 13
+/REVERZ.*D-INFO/		 	 	REJECT Body-Spamschutzregel 14
+/D-INFO.*REVERZ/		 	 	REJECT Body-Spamschutzregel 15
+/greatmaleenhancement.biz/			REJECT Body-Spamschutzregel 16
+/ Xanax /				 	REJECT Body-Spamschutzregel 17
+/ Vic(o|0)din /			 	 	REJECT Body-Spamschutzregel 18
+/ Hydr(o|0)c(o|0)d(o|0)ne /		 	REJECT Body-Spamschutzregel 19
+/ V1agra /			 	 	REJECT Body-Spamschutzregel 20
+/warehousefull.com/		 	 	REJECT Body-Spamschutzregel 21
+/No doctor visit needed/		 	REJECT Body-Spamschutzregel 22
+/KLICKTEL KENNT SIE!/		 	 	REJECT Body-Spamschutzregel 23
+/^www.femo-online.de/		 	 	REJECT Body-Spamschutzregel 24
+/www.land-ua.com/		 	 	REJECT Body-Spamschutzregel 25
+/Come to Loqozine/		 	 	REJECT Body-Spamschutzregel 26
+/^<center><.*a href=.*img src=.*border.*><\/a><\/center>$/		 	 	REJECT Body-Spamschutzregel Check 27
+/www.gord.us/			 	 	REJECT Body-Spamschutzregel 28
+/www.reverz.org/		 	 	REJECT Body-Spamschutzregel 29
+/wonderfulaction.com/		 	 	REJECT Body-Spamschutzregel 30
+/At our pharmacy we offer/		 	REJECT Body-Spamschutzregel 31
+/Was ist besser als eine fette Ladung Sahne/	REJECT Body-Spamschutzregel 32
+/www.surerxmed.com/		 	 	REJECT Body-Spamschutzregel 33
+/www.surerxpills.com/		 	 	REJECT Body-Spamschutzregel 34
+/www.stifyems.com/		 	 	REJECT Body-Spamschutzregel 35
+/www.diatrus.com/		 	 	REJECT Body-Spamschutzregel 36
+/CITYNETT-NEWSLETTER/i		 	 	REJECT Body-Spamschutzregel 37
+/Note: *Use *password/		 	 	REJECT Body-Spamschutzregel 38
+/ will  be disabled because  of improper using/	REJECT Body-Spamschutzregel 39
+/i.*don.*like.*the*.plaintext/		 	REJECT Body-Spamschutzregel 40
+/archive *password/		 	 	REJECT Body-Spamschutzregel 41
+# /The *Attac..* *team/		 	 	REJECT Body-Spamschutzregel 42
+/The *Attac.org *team/		 	 	REJECT Body-Spamschutzregel 43
+/The *Attac.de *team/		 	 	REJECT Body-Spamschutzregel 44
+/The *Attac-netzwerk.de *team/		 	REJECT Body-Spamschutzregel 45
+/The *Jpberlin.de *team/		 	REJECT Body-Spamschutzregel 46
+/Our main mailing server/		 	REJECT Body-Spamschutzregel 47
+/please update your profile at Billing Center/	REJECT Body-Spamschutzregel 48
+/WSEAS will reply to you/		 	REJECT Body-Spamschutzregel 49
+/de.componentsengine.net/		 	REJECT Body-Spamschutzregel 50
+/List von Components Engine eingetragen/	REJECT Body-Spamschutzregel 51
+/The Weekend Pill - Xialis is safer, quicker, lasts longers/	REJECT	Body-Spamschutzregel
+/Muzenda der �teste Sohn von Paul Muzenda bin , einem Farmer in Simba/		 	 	REJECT Body-Spamschutzregel 53
+/Alles fr die Autorennbahn/		 	REJECT Body-Spamschutzregel 54
+/Der Wurm nennt sich selbst "ODIN" und konnte sich bist jetzt/		 	REJECT Body-Spamschutzregel 55
+/NICHT ABHEBEN, SONDERN SOFORT ABWEISEN/	 	REJECT Body-Spamschutzregel Das ist ein HOAX, eine Falschmeldung. http://www.hoax-info.de 56
+/Es ist ein Virus, welcher alle IMEI und IMSI Daten/ 	REJECT Body-Spamschutzregel Das ist ein HOAX, eine Falschmeldung. http://www.hoax-info.de 57
+/Der Meister unter den Druckprogrammen: PRINTMASTER 8 GOLD/		 	REJECT Body-Spamschutzregel 58
+/Stellen Sie sich vor, Sie kaufen ein Produkt oder eine Dienstleistung im/ 	REJECT Body-Spamschutzregel 59
+/So finden Sie blitzschnell den NAMEN und ADRESS-EINTRAG zu jeder/		 REJECT Body-Spamschutzregel 60
+/^TVqQAAMAAAAEAAAA\/\/8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA$/   	 	 	REJECT Body-Spamschutzregel Due to recent virus attacks, we temporarily block all Win32 executable files. Please re-send your attachment in a compressed (tar, zip, rar, etc.) form. Your message has NOT been delivered. 61
+/eptember 2003, Cumulative Patch/		 	 	 		REJECT Body-Spamschutzregel 62
+/Ich bin gerade vor einem neuen.*sehr gef�rlichen V.rus gewarnt/ 	 	REJECT Body-Spamschutzregel 63
+/^RSLxwtYBDB6FCv8ybBcS0zp9VU5of3K4BXuwyehTM0RI9IrSjVuwP94xfn0wgOjouKWzGXHVk3qg$/ 	REJECT Body-Spamschutzregel This is a Sobig-Worm! 64
+/exklusives virtuelles Gratis-Rubbellos welches Sie gleich jetzt live mit/		REJECT Body-Spamschutzregel 65
+/Willkommen beim Lucky7Casino/		 	 	REJECT Body-Spamschutzregel 66
+/heutzutage spielen Kontakte und Adressdaten eine immer wichtigere Rolle./		 REJECT Body-Spamschutzregel 67
+/REVERZ anhand des Datenbestands der D-Info den gesuchten/		 	 	REJECT Body-Spamschutzregel 68
+/www.privatseitennetz.com/		 	 	REJECT Body-Spamschutzregel 69
+/Outlook and Outlook Express as well as five newly/	REJECT Body-Spamschutzregel 70
+/delog@cip.informatik.uni-wuerzburg.de/		 	REJECT Body-Spamschutzregel 71
+/credit.hostfree2003.com/		 	 	REJECT Body-Spamschutzregel 72
+/www.mediabiz.de.ewmail/		 	 	REJECT Body-Spamschutzregel 73
+/Want to boost your sales with Internet/		REJECT Body-Spamschutzregel 74
+/talente.tripod.com.br/		 	 	 	REJECT Body-Spamschutzregel 75
+/schlechte Schufa-Auskunft? Bonit�sprobleme? Dann w�len Sie doch/		 	 	REJECT Body-Spamschutzregel 76
+/Diese Liste von Banken, Sparkassen Volks- und Raiffeisenbanken OHNE Schufa-Anschluss finden Sie nicht/		 	 	REJECT Body-Spamschutzregel 77
+/Gute Nachrichten. Gerade habe ich die geile \"FickShow\" gefunden:/		 	 	REJECT Body-Spamschutzregel 78
+/Gute Nachrichten. Gerade habe ich die geile "FickShow" gefunden:/		 	 	REJECT Body-Spamschutzregel 79
+/Create Professional 3D Page-Tuning/		 	REJECT Body-Spamschutzregel 80
+/SEXKONTAKTE ONLINE/		 	 	 	REJECT Body-Spamschutzregel 81
+/FREE Access to.*adult.*sites/i		 	 	REJECT Body-Spamschutzregel 82
+/web-supermarket.com/i 		 	 	 	REJECT Body-Spamschutzregel 83
+/Wir haben ihre Adresse durch eines unserer Partnerunternehmen/		 	REJECT Body-Spamschutzregel 84
+/Wir haben ihre Adresse.*Partnerunternehmen/i		REJECT 85
+/herbal-place.com/		 	 	REJECT Body-Spamschutzregel 86
+/GIO DIET-CAPS greifen hier ein durch:/		 	REJECT Body-Spamschutzregel 87
+/These are Free Cash Grants That you NEVER have to repay/		 	REJECT Body-Spamschutzregel 88
+/Wir haben unseren Zugang neu upgedadet/		  	REJECT Body-Spamschutzregel 89
+/Jemand der Dich sehr gut kennt wuerde gern ein Treffen mit Dir/i	 	REJECT Body-Spamschutzregel 90
+/Wenn Du wissen willst wer Dich treffen moechte/i		 	 	REJECT Body-Spamschutzregel 91
+/You Have Won a FREEE/i		 	 	REJECT Body-Spamschutzregel 93
+/Click Here For All Your Favorite Pornstars/i		 	 	REJECT Body-Spamschutzregel 94
+/Year the U.S. Government Gives away BILLIONS in cash grants/i 		 	 	REJECT Body-Spamschutzregel 95
+/Banken ohne Schufa-Auskunft/i		 	 	REJECT Body-Spamschutzregel 96
+/Probleme mit der Schufa/i		 	 	REJECT Body-Spamschutzregel 97
+/Laden Sie sich jetzt unsere kostenlose Zugangssoftware runter/		 	 	REJECT Body-Spamschutzregel 98
+/Genocide Is A Black-And-White Concept/			 	REJECT Body-Spamschutzregel 99
+/So viele Wuensche auf einmal/			 	 	REJECT Body-Spamschutzregel 100
+/diese Mail ist kein SPAM/i			 	 	REJECT Body-Spamschutzregel 101
+/Sch.*ne Gr.*e von Lucky Casino/			 	REJECT Body-Spamschutzregel 102
+/Weil Sie oder ein anderer bei Lucky Casino/i 		 	REJECT Body-Spamschutzregel 103
+/Endlich habe ich Deine E-Mail Adresse wieder gefunden, das hat aber/i		 	 	REJECT Body-Spamschutzregel 104
+/galerie kurt im hirsch/		 	REJECT Body-Spamschutzregel 
+/X-MS_Scanner: Kein Virus erkannt/		REJECT Body-Spamschutzregel Sober-Wurmsignatur
+/Anti_Virus Service/		 	 	REJECT Body-Spamschutzregel Sober-Wurmsignatur
+
+# 
+# Checks gesammelt aus dem Netz von 
+# http://www.hispalinux.es/~data/postfix/ 
+# 
+/.*www\.removeyou\.com.*/ 	 	REJECT Body-Spamschutzregel 110
+/.*waterforge\.com.*/ 	 	 	REJECT Body-Spamschutzregel 111
+/.*capitalwave\.com\?subject=Please*/ 	REJECT Body-Spamschutzregel 112
+/\.virtmundo\.com/ 	 	 	REJECT Body-Spamschutzregel 113
+#/Accept Credit Cards/ 	 	 	REJECT Body-Spamschutzregel 114
+/Nude Celebrities/ 	 	 	REJECT Body-Spamschutzregel 115
+/PRODUCT or SERVICE/i 	 	 	REJECT Body-Spamschutzregel 116
+# /GUARANTEED!/ 	 	 	 	REJECT Body-Spamschutzregel 117
+/Amateur Girls/ 	 	 	REJECT Body-Spamschutzregel 118
+#/FREE MEMBERSHIP/ 	 	 	REJECT Body-Spamschutzregel 119
+#/bizinfo/ 	 	 	 	REJECT Body-Spamschutzregel 120
+# block iframe hack 122
+/<iframe src=(3D)?cid:.* height=(3D)?0 width=(3D)?0>/ 	 	 	REJECT Body-Spamschutzregel 123
+# some porn spam phrases 125
+/^Big tit lovers unite\.$|\bcum.?(shoo?ts|slurp)|swallow(ing)? cum\b|\bcum\b.*swallow(ing)?|\b(ass|arse).?fucking|(tight|wet|shaved|young|teen)+ pussy|fuck.?fest|pussy.?juice|\bcum all over|compulsive masturbators agree|explicit hardcore|(nasty|teen).*\bsluts?|You received this mail because our records show that you have asked to receive|(TEEN|ANAL) FUCK SITE|delete this mail( now)? if (you|u) do not want porn|HARDCORE PORN|HORNY FARMGIRLS/ 	 	 	REJECT Body-Spamschutzregel 126
+# some nigerian scam phrases 128
+/^Dear.*(Fellow.*Entrepreneur|Achiever|adult.*webmaster|Internet.*user|Future.*Millionaire)/ 	 	 	REJECT Body-Spamschutzregel 129
+# Wg. Postfiy-Problem auskommentiert?! 130
+#/(Dan Dakova|(TO|Attn *)[;:]? *(The )?President *\/ *C\.?E\.?O\.?|STRICTLY CONFIDENTIAL BUSINESS PROPOSAL|MR(?:\.|=2e)? PATRICE MILLER|President of Crane International Trading Corp(?:\.|=2e)|44-775-281-5820|44-7799289001|44-7092374892|44-7092343325|JOSEPH NWOSU|HARRY KONGOLO|JAMES GIWA|(Umaru|Aminatou) Hamidu|PERSONAL AND STRICTLY CONFIDENTIAL|It is with my profound dignity that I write you this very important|REQUEST FOR URGENT BUSINESS|Marshall Kabba|WITH DUE RESPECT AND HUMIILITY I WRITE YOU|I GOT YOUR CONTACT THROUGH INTERNATIONAL BUSINESS|Your contact address got to me through the Internet|MOHAMMED(?:\.|=2e)?\s?ABACHA|will forward to you a duly signed POWER OF ATTORNEY|Edith M(?:\.|=2e)? Koromah|I must solicit your strictest confidence in this transaction|MRS(?:\.|=2e)? ?M.? ?SESE-SEKO|WIDOW OF LATE PRESIDENT MOBUTU|ATTN:\s*MANAGING DIRECTOR|PERMIT ME TO INFORM YOU OF MY DESIRE OF GOING INTO|MR MOMADOU LEY|I AM BARRISTER ABDULKARIMI A(?:\.|=2e)? BRUME|^\s*ATTN\s*;\s*$|BRAM KHUMALO|(Sandra|Jonas) Savimbi|Million\b.{0,40}\b(?:United States? Dollars?|USD)|BASED ON INFORMATION GATHERED ABOUT YOU|POSITION TO HELP US IN TRANSFER|Government of Nigeria|NIGERIAN? NATIONAL|Nigerian? Government|Bank of Nigeria|Mpeti Kabila|President LAURENT DESIRE KABILA|CLEMENT OSHODI|URGENT & CONFIDENTIAL BUSINESS PROPOSAL|DEPARMENT OF PETROLEUM RESOURCES|Federal Ministry of works and Housing in Nigeria|Director of Contracts and Finance Allocation|CHIENCHEN YU|Dangote Ahmed|CHRIS KAASA|I WAIT YOUR URGENT RESPONSE|PRESIDENT DAWUDU JAWARA|JAMES ADELEKE|I am soliciting your involvement in a business|MIRIAM ABACHA|wife of the (?:late )?Nigeria|Kamuzu Thandiwe)/ 	 	 	REJECT Body-Spamschutzregel 131
+# misc spam phrases 133
+/(Kathmandu Temple Kiff|Do You Have The Yen To Be a A Millionaire\?|This message is brought to you by BerryTrim Affiliate|A \$5,000 Investment in the Euro vs the dollar, "?properly positioned"?|Reply( back)? with "?remove"? in( the)? subject line|To be removed (send e?-?mail|from further mailings)|If you have the staff to field the leads I can generate|Do you need more Traffic to your website\?|herbal viagra)/ 	 	 	REJECT Body-Spamschutzregel 134
+# Covers off most of the double extension virus attachments- more you have 140
+# in one line the more efficient it is 141
+/^Content-Disposition: attachment;filename=".*\.(doc|zip|exe|xls|jpg|gif)\.(pif|bat|com|exe|lnk)"$/ 	 	 	REJECT Body-Spamschutzregel 142
+/^Content-Disposition: attachment;filename=.*\.(doc|zip|exe|xls|jpg|gif)\.(pif|bat|com|exe|lnk)$/ 	 	 	REJECT Body-Spamschutzregel 143
+/(filename|name)="(WTC|wtc|README)\.EXE"/                       	 	 	REJECT Body-Spamschutzregel 145
+/(filename|name)="(Happy99|Navidad|prettypark|pretty park|zipped_files|flcss|Msinit|wininit|msi216|readme|README|Avp_updates|Qi_test|Anti_cih)\.exe"/           	 	 	REJECT Body-Spamschutzregel 146
+/(filename|name)="(dhcp*|Emanuel|kmbfejkm|NakedWife|Seicho_no_ie|JAMGCJJA|Sulfnbk)\.exe"/           	 	 	REJECT Body-Spamschutzregel 147
+/(kak|day)\.(reg|hta)/                                          	 	 	REJECT Body-Spamschutzregel 148
+/to be removed[,]* please click.*link/ 	 	 	REJECT Body-Spamschutzregel 151
+# /to be removed[,]* from (the|my|our) (mailing|email|e-mail)*[ ]*list/ 	 	 	REJECT Body-Spamschutzregel 152
+/to be removed[,]* from.*(mailings|offers)/ 	 	 	REJECT Body-Spamschutzregel 153
+/to be removed[,]* from the list send a blank email/ 	 	 	REJECT Body-Spamschutzregel 154
+/to be removed[,]* [e]*[-]*mail.*with/ 	 	 	REJECT Body-Spamschutzregel 155
+/to remove[,]* please send a blank email/ 	 	 	REJECT Body-Spamschutzregel 156
+#/remove yourself from this list/ 	 	 	REJECT Body-Spamschutzregel 157
+/removed from our mail agents/ 	 	 	REJECT Body-Spamschutzregel 158
+/to remove yourself immediately/ 	 	 	REJECT Body-Spamschutzregel 159
+/to remove yourself from future/ 	 	 	REJECT Body-Spamschutzregel 160
+/Rem[o]*ve me fro[nm] any (furhter|further) mailings/ 	 	 	REJECT Body-Spamschutzregel 161
+/remove yourself from any future mailings/ 	 	 	REJECT Body-Spamschutzregel 162
+/to no longer receive this message reply/ 	 	 	REJECT Body-Spamschutzregel 163
+/to no longer receive messages click the link/ 	 	 	REJECT Body-Spamschutzregel 164
+/to no longer receive messages please click the link/ 	 	 	REJECT Body-Spamschutzregel 165
+/our broadcast email software/ 	 	 	REJECT Body-Spamschutzregel 166
+/there are no federal regulations or laws on (email|e-mail) advertising/ 	 	 	REJECT Body-Spamschutzregel 167
+/to receive (no|any) (further|future) (offers|mailings)/ 	 	 	REJECT Body-Spamschutzregel 168
+/unsubscribe from Virtumundo Rewards/ 	 	 	REJECT Body-Spamschutzregel 171
+/if you do not wish to receive email from me/ 	 	 	REJECT Body-Spamschutzregel 172
+/reply with the word remove in the subject line/ 	 	 	REJECT Body-Spamschutzregel 173
+/reply address on this email was active at the time this email was sent/ 	 	 	REJECT Body-Spamschutzregel 174
+/not a registered investment advisor/ 	 	 	REJECT Body-Spamschutzregel 175
+/sent by corporate micro mail manager/ 	 	 	REJECT Body-Spamschutzregel 176
+/to be stop future mailings/ 	 	 	REJECT Body-Spamschutzregel 177
+/to stop future mailings/ 	 	 	REJECT Body-Spamschutzregel 178
+/to be taken off the mailing list please click below/ 	 	 	REJECT Body-Spamschutzregel 179
+/sent to you in compliance (with|of)/ 	 	 	REJECT Body-Spamschutzregel 180
+/sent in compliance (with|of)/ 	 	 	REJECT Body-Spamschutzregel 181
+/compliance with the current federal legislation/ 	 	 	REJECT Body-Spamschutzregel 182
+/comply with proposed federal legislation/ 	 	 	REJECT Body-Spamschutzregel 183
+/permanently (deleted|removed) from our (database|list)/ 	 	 	REJECT Body-Spamschutzregel 184
+/to be removed your email from our mailing list/ 	 	 	REJECT Body-Spamschutzregel 185
+/this mailing is done by an independent marketing/ 	 	 	REJECT Body-Spamschutzregel 186
+/this[ ]*message[ ]*is[ ]*being[ ]*sent[ ]*in[ ]*full[ ]*compliance/ 	 	 	REJECT Body-Spamschutzregel 187
+/this is a one[-\ ]*time (email|e-mail|mailing|offer)/ 	 	 	REJECT Body-Spamschutzregel 188
+/Under Bill s.1618/ 	 	 	REJECT Body-Spamschutzregel 189
+/cannot be considered spam/ 	 	 	REJECT Body-Spamschutzregel 190
+/cannot be considered as spam/ 	 	 	REJECT Body-Spamschutzregel 191
+/(respect|honor|honour) all removal requests/ 	 	 	REJECT Body-Spamschutzregel 192
+/no longer wish to receive these offers/ 	 	 	REJECT Body-Spamschutzregel 193
+/you will not receive this offer again/ 	 	 	REJECT Body-Spamschutzregel 194
+/this is not an unsolicited mail/ 	 	 	REJECT Body-Spamschutzregel 195
+/this email has not been sent to you unsolicited/ 	 	 	REJECT Body-Spamschutzregel 196
+/has not been sent unsolicited/ 	 	 	REJECT Body-Spamschutzregel 197
+#/(wish|would) to be removed from (our|the)/ 	 	 	REJECT Body-Spamschutzregel 199
+/all removes (honored|honoured)/ 	 	 	REJECT Body-Spamschutzregel 200
+/To[ ]+remove[ ]+.*@excite.com/ 	 	 	REJECT Body-Spamschutzregel 201
+/to[ ]+be[ ]+removed[ ]+.*@excite.com/ 	 	 	REJECT Body-Spamschutzregel 202
+/removemenow@excite.com/ 	 	 	REJECT Body-Spamschutzregel 204
+/1800cruisesandtours\.com/ 	 	 	REJECT Body-Spamschutzregel 205
+/freewebdirect\.net/ 	 	 	REJECT Body-Spamschutzregel 206
+/new-herbalway\.com/ 	 	 	REJECT Body-Spamschutzregel 207
+/advantagesweb\.com/ 	 	 	REJECT Body-Spamschutzregel 208
+/phytohealing\.com/ 	 	 	REJECT Body-Spamschutzregel 209
+/tradersprophet\.com/ 	 	 	REJECT Body-Spamschutzregel 210
+/ugot2see\.com/ 	 	 	REJECT Body-Spamschutzregel 211
+/hotlatinparadise\.com/ 	 	 	REJECT Body-Spamschutzregel 212
+/pearlgolf\.com/ 	 	 	REJECT Body-Spamschutzregel 213
+/halloweenomania\.com/ 	 	 	REJECT Body-Spamschutzregel 214
+/gofortuneonline\.com/ 	 	 	REJECT Body-Spamschutzregel 215
+/scantexas\.com/ 	 	 	REJECT Body-Spamschutzregel 216
+/buildreferrals\.com/ 	 	 	REJECT Body-Spamschutzregel 217
+/removeyou\.com/ 	 	 	REJECT Body-Spamschutzregel 218
+/cashbackmall\.com/ 	 	 	REJECT Body-Spamschutzregel 219
+/pageitnow\.net/ 	 	 	REJECT Body-Spamschutzregel 220
+/easycream\.com/ 	 	 	REJECT Body-Spamschutzregel 221
+/optinrealbig\.com/ 	 	 	REJECT Body-Spamschutzregel 222
+/realgreatgifts\.com/ 	 	 	REJECT Body-Spamschutzregel 223
+/realcheapgifts\.com/ 	 	 	REJECT Body-Spamschutzregel 224
+/pillsofpleasure\.com/ 	 	 	REJECT Body-Spamschutzregel 225
+/greathealthpills\.com/ 	 	 	REJECT Body-Spamschutzregel 226
+/saverealbigdeals\.com/ 	 	 	REJECT Body-Spamschutzregel 227
+/saverealbigstore\.com/ 	 	 	REJECT Body-Spamschutzregel 228
+/realbigwinners\.com/ 	 	 	REJECT Body-Spamschutzregel 229
+/saverealbig\.com/ 	 	 	REJECT Body-Spamschutzregel 230
+/extremetraffic_rem@excite\.com/ 	 	 	REJECT Body-Spamschutzregel 232
+/tccoptin@yahoo\.com/ 	 	 	REJECT Body-Spamschutzregel 233
+/tccoptout@yahoo.com/ 	 	 	REJECT Body-Spamschutzregel 234
+/stop026@excite\.com/ 	 	 	REJECT Body-Spamschutzregel 235
+/pleasestopsending@hotmail.com/ 	 	 	REJECT Body-Spamschutzregel 236
+/viperdrawing@winning.com/ 	 	 	REJECT Body-Spamschutzregel 237
+/mailto:.*\@.*\?subject\=(3D)*(remove|removeme|pleasedelete|pleaseremove|deleteme)+/ 	 	 	REJECT Body-Spamschutzregel 238
+/StudioPros/ 	 	 	REJECT Body-Spamschutzregel 240
+/universal advertising systems/ 	 	 	REJECT Body-Spamschutzregel 241
+/androstenone pheromone concentrate/ 	 	 	REJECT Body-Spamschutzregel 242
+/message was sent by a[n]* independent advertising company/ 	 	 	REJECT Body-Spamschutzregel 243
+/amazing cash products/ 	 	 	REJECT Body-Spamschutzregel 244
+/penis.*growth/ 	 	 	REJECT Body-Spamschutzregel 245
+/vortex[ ]+supplies/ 	 	 	REJECT Body-Spamschutzregel 246
+/international trade sources llc/ 	 	 	REJECT Body-Spamschutzregel 247
+/postmasterdirect inc/ 	 	 	REJECT Body-Spamschutzregel 248
+/free no obligation consultation/ 	 	 	REJECT Body-Spamschutzregel 249
+/voted sex[-\ ]server on the web/ 	 	 	REJECT Body-Spamschutzregel 250
+/get back.*years of your income taxes/ 	 	 	REJECT Body-Spamschutzregel 251
+/click here for your free quote/ 	 	 	REJECT Body-Spamschutzregel 252
+/click here to be (permanently)* ?(removed|deleted)/ 	 	 	REJECT Body-Spamschutzregel 253
+/to unsubscribe do nothing/ 	 	 	REJECT Body-Spamschutzregel 254
+/OTCBB Stock Alert/ 	 	 	REJECT Body-Spamschutzregel 255
+/apparently you have filled out an online form/ 	 	 	REJECT Body-Spamschutzregel 257
+/list management software will not know/ 	 	 	REJECT Body-Spamschutzregel 258
+/message will only be sent once/ 	 	 	REJECT Body-Spamschutzregel 259
+/found this company on the internet/ 	 	 	REJECT Body-Spamschutzregel 260
+/you will not receive any future mailings/ 	 	 	REJECT Body-Spamschutzregel 261
+/all removal requests are (honored|honoured)/ 	 	 	REJECT Body-Spamschutzregel 262
+/you will be removed from our mailing[ ]*list and receive no further information from us/ 	 	 	REJECT Body-Spamschutzregel 263
+/we include contact information and a method to be removed from our mailing[ ]*list/ 	 	 	REJECT Body-Spamschutzregel 264
+/there is no need to unsubscribe/ 	 	 	REJECT Body-Spamschutzregel 265
+/I have made every attempt to target this message/ 	 	 	REJECT Body-Spamschutzregel 266
+/If you do not wish to be on our list then click here/ 	 	 	REJECT Body-Spamschutzregel 267
+/If you are not interested in receiving information/ 	 	 	REJECT Body-Spamschutzregel 268
+/your request will be (honored|honoured) with prompt removal/ 	 	 	REJECT Body-Spamschutzregel 269
+/if you feel you got this e[-]*mail by mistake/ 	 	 	REJECT Body-Spamschutzregel 270
+/to have us permanently remove you from our list/ 	 	 	REJECT Body-Spamschutzregel 271
+/we guarantee you will not receive any future e[-]*mails from us/ 	 	 	REJECT Body-Spamschutzregel 272
+/if you would rather not receive future e[-]*mails/ 	 	 	REJECT Body-Spamschutzregel 273
+/we do not intend to send any future e[-]*mails/ 	 	 	REJECT Body-Spamschutzregel 274
+/further emailing to you by the of this email may be stopped/ 	 	 	REJECT Body-Spamschutzregel 275
+/by the of this email may be stopped/ 	 	 	REJECT Body-Spamschutzregel 276
+/receiving this e[-]*mail because you opted[-\ ]in/ 	 	 	REJECT Body-Spamschutzregel 277
+/this email has been sent to you because someone at this e[-]*mail address/ 	 	 	REJECT Body-Spamschutzregel 278
+/to have your name removed from our email database/ 	 	 	REJECT Body-Spamschutzregel 279
+/stopped at no cost to you by sending a reply to this e[-]*mail address/ 	 	 	REJECT Body-Spamschutzregel 280
+/this message is an advertisement/ 	 	 	REJECT Body-Spamschutzregel 281
+/immediately removed from receiving any more information/ 	 	 	REJECT Body-Spamschutzregel 282
+/would not like to receive future messages/ 	 	 	REJECT Body-Spamschutzregel 283
+/tell us you would not like to continue to receive such e[-]*mails/ 	 	 	REJECT Body-Spamschutzregel 284
+/advertise your product or service using bulk email services/ 	 	 	REJECT Body-Spamschutzregel 285
+/You have been specially selected to qualify/ 	 	 	REJECT Body-Spamschutzregel 286
+/while working from the privacy of your own home/ 	 	 	REJECT Body-Spamschutzregel 287
+/e[-]*mail messages may be stopped/ 	 	 	REJECT Body-Spamschutzregel 288
+/list removal\/opt[-\ ]*out/ 	 	 	REJECT Body-Spamschutzregel 289
+/this is a no obligation qualification form/ 	 	 	REJECT Body-Spamschutzregel 290
+/please notify the sender immediately with .*remove/ 	 	 	REJECT Body-Spamschutzregel 291
+/home[-\ ]based income opportunity/ 	 	 	REJECT Body-Spamschutzregel 292
+/(filename|name)="(Happy99|Navidad|prettypark)\.exe"/ 	 	 	REJECT Body-Spamschutzregel 294
+/(filename|name)="(pretty park|zipped_files|flcss)\.exe"/ 	 	 	REJECT Body-Spamschutzregel 295
+/(filename|name)="(Msinit|wininit|msi216|CFGWIZ31)\.exe"/ 	 	 	REJECT Body-Spamschutzregel 296
+/(filename|name)="(Avp_updates|Qi_test|Anti_cih)\.exe"/ 	 	 	REJECT Body-Spamschutzregel 297
+/(filename|name)="(Emanuel|kmbfejkm|NakedWife|Readme|readme)\.exe"/ 	 	 	REJECT Body-Spamschutzregel 298
+/(filename|name)="(Seicho_no_ie|JAMGCJJA|Sulfnbk|QuickLnk)\.exe"/ 	 	 	REJECT Body-Spamschutzregel 299
+/(filename|name)="(Readme|readme)\.eml"/ 	 	 	REJECT Body-Spamschutzregel 300
+/(kak|day)\.(reg|hta)/ 	 	 	REJECT Body-Spamschutzregel 302
+/Rem I am sorry/      	 	 	REJECT Body-Spamschutzregel 303
+/Te mando este archivo para que me des tu punto de vista/ 	 	 	REJECT Body-Spamschutzregel 304
+/I send you this file in order to have your advice/ 	 	 	REJECT Body-Spamschutzregel 305
+/Espero me puedas ayudar con el archivo que te mando/ 	 	 	REJECT Body-Spamschutzregel 306
+/Espero te guste este archivo que te mando/ 	 	 	REJECT Body-Spamschutzregel 307
+/Este es el archivo con la informaci� que me pediste/ 	 	 	REJECT Body-Spamschutzregel 308
+/I hope you can help me with this file that I send/ 	 	 	REJECT Body-Spamschutzregel 309
+/I hope you like the file that I send you/ 	 	 	REJECT Body-Spamschutzregel 310
+/This is the file with the information that you ask for/ 	 	 	REJECT Body-Spamschutzregel 311
+/0 Business Fax Numbers/ 	 	 	REJECT Body-Spamschutzregel 314
+/1[-\ ]Time Mailling/ 	 	 	REJECT Body-Spamschutzregel 315
+/30 day money back guarantee/ 	 	 	REJECT Body-Spamschutzregel 316
+/A New Loan Makes Sense/ 	 	 	REJECT Body-Spamschutzregel 317
+/Advertise your product or service/ 	 	 	REJECT Body-Spamschutzregel 318
+/Aging While Burning Fat/ 	 	 	REJECT Body-Spamschutzregel 319
+/Amazing cash products/ 	 	 	REJECT Body-Spamschutzregel 320
+/Androstenone/ 	 	 	REJECT Body-Spamschutzregel 321
+/Attract Members of The Opposite/ 	 	 	REJECT Body-Spamschutzregel 322
+/Automatic Stock Picking Software/ 	 	 	REJECT Body-Spamschutzregel 323
+/Bad Credit Is History/ 	 	 	REJECT Body-Spamschutzregel 324
+/Banner Advertising Price/ 	 	 	REJECT Body-Spamschutzregel 325
+/Barnyard Fucking/ 	 	 	REJECT Body-Spamschutzregel 326
+/BEAUTIFUL Women On The Web/ 	 	 	REJECT Body-Spamschutzregel 327
+/Because Our Records Indicate That You Are A/ 	 	 	REJECT Body-Spamschutzregel 328
+# /Because You Agree/ 	 	 	REJECT Body-Spamschutzregel 329
+/Because You Have Subscribed To One Of Our/ 	 	 	REJECT Body-Spamschutzregel 330
+#/Because You Registered/ 	 	 	REJECT Body-Spamschutzregel 331
+/Because You Signed Up At One/ 	 	 	REJECT Body-Spamschutzregel 332
+/Best Porn/ 	 	 	REJECT Body-Spamschutzregel 333
+/Buy Preforeclosure Houses/ 	 	 	REJECT Body-Spamschutzregel 334
+/Cable TV Descrambler/ 	 	 	REJECT Body-Spamschutzregel 335
+/Cannot be Considered Spam/ 	 	 	REJECT Body-Spamschutzregel 336
+/Cannot be Considered As Spam/ 	 	 	REJECT Body-Spamschutzregel 337
+/Caso nao desejar receber este tipo de email novamente/ 	 	 	REJECT Body-Spamschutzregel 338
+/Click Here For Your Free Quote/ 	 	 	REJECT Body-Spamschutzregel 339
+/Click Here To Avoid This In The Future/ 	 	 	REJECT Body-Spamschutzregel 340
+/Compliance with the current federal legislation/ 	 	 	REJECT Body-Spamschutzregel 341
+/Copy DVD Movies/ 	 	 	REJECT Body-Spamschutzregel 343
+/Creating Immediate Wealth/ 	 	 	REJECT Body-Spamschutzregel 344
+/Cum Shots/ 	 	 	REJECT Body-Spamschutzregel 345
+/Dear Future/ 	 	 	REJECT Body-Spamschutzregel 348
+#/Dear Entrepreneur/ 	 	 	REJECT Body-Spamschutzregel 349
+/Debt Consolidation/ 	 	 	REJECT Body-Spamschutzregel 350
+/Do You Want Financial/ 	 	 	REJECT Body-Spamschutzregel 351
+/Don't Need A Prescription/ 	 	 	REJECT Body-Spamschutzregel 352
+/E[-\ ]Mail Bill Section 301/ 	 	 	REJECT Body-Spamschutzregel 353
+/Earn A Full Time Income/ 	 	 	REJECT Body-Spamschutzregel 354
+/Easily Lose Weight/ 	 	 	REJECT Body-Spamschutzregel 355
+/Equalamail/ 	 	 	REJECT Body-Spamschutzregel 356
+/Email Bill Section 301/ 	 	 	REJECT Body-Spamschutzregel 357
+/Erotic Travel Guide/ 	 	 	REJECT Body-Spamschutzregel 358
+/Fat Blocker/ 	 	 	REJECT Body-Spamschutzregel 359
+/Fellow Internet entrepeneur/ 	 	 	REJECT Body-Spamschutzregel 360
+/Figure Income Earners/ 	 	 	REJECT Body-Spamschutzregel 361
+/Find Out Anything About Anyone/ 	 	 	REJECT Body-Spamschutzregel 362
+/Fix Your Credit/ 	 	 	REJECT Body-Spamschutzregel 363
+/Found this company on the internet/ 	 	 	REJECT Body-Spamschutzregel 364
+/Free Bulk Email/ 	 	 	REJECT Body-Spamschutzregel 365
+/Free Direct Email/ 	 	 	REJECT Body-Spamschutzregel 367
+/Free Multiple Moving Cost/ 	 	 	REJECT Body-Spamschutzregel 368
+/Free no obligation/ 	 	 	REJECT Body-Spamschutzregel 369
+/Free Private Webcam/ 	 	 	REJECT Body-Spamschutzregel 370
+/Free S e x/ 	 	 	REJECT Body-Spamschutzregel 371
+/Free Sex/ 	 	 	REJECT Body-Spamschutzregel 372
+/Free Vacation Giveaway/ 	 	 	REJECT Body-Spamschutzregel 373
+/Free XXX/ 	 	 	REJECT Body-Spamschutzregel 374
+/From A Concerned Gas User/ 	 	 	REJECT Body-Spamschutzregel 375
+/Get back.*years of your income taxes/ 	 	 	REJECT Body-Spamschutzregel 376
+/Government Grants E-Book/ 	 	 	REJECT Body-Spamschutzregel 377
+/GROWTH HORMONE RELEASER/ 	 	 	REJECT Body-Spamschutzregel 378
+/Hardcore Animal Action/ 	 	 	REJECT Body-Spamschutzregel 379
+/Hardcore Barnyard/ 	 	 	REJECT Body-Spamschutzregel 380
+/Hardcore Fist/ 	 	 	REJECT Body-Spamschutzregel 381
+/Hardcore Fucking/ 	 	 	REJECT Body-Spamschutzregel 382
+/Home[-\ ]based income opportunity/ 	 	 	REJECT Body-Spamschutzregel 383
+/Has not been sent unsolicited/ 	 	 	REJECT Body-Spamschutzregel 384
+/I Will Personally Show You How/ 	 	 	REJECT Body-Spamschutzregel 385
+/Independent advertising company/ 	 	 	REJECT Body-Spamschutzregel 386
+/Incredible Life Changing/ 	 	 	REJECT Body-Spamschutzregel 387
+/It Has Been Going Since/ 	 	 	REJECT Body-Spamschutzregel 388
+/Hardcore Animal/ 	 	 	REJECT Body-Spamschutzregel 389
+/Hardcore Fucking/ 	 	 	REJECT Body-Spamschutzregel 390
+/Hardcore Teens/ 	 	 	REJECT Body-Spamschutzregel 391
+/Hardcore Unsuspecting/ 	 	 	REJECT Body-Spamschutzregel 392
+/Has not been sent to you unsolicited/ 	 	 	REJECT Body-Spamschutzregel 393
+/Hear About Future Offers From Us/ 	 	 	REJECT Body-Spamschutzregel 394
+/Hear About Offers From Us/ 	 	 	REJECT Body-Spamschutzregel 395
+/Hot Horny Girls/ 	 	 	REJECT Body-Spamschutzregel 396
+/Hot Young Nasty/ 	 	 	REJECT Body-Spamschutzregel 397
+/Huge Wild Animals/ 	 	 	REJECT Body-Spamschutzregel 398
+/Improve Sexual Vigor/ 	 	 	REJECT Body-Spamschutzregel 399
+#/If you no longer wish to receive/ 	 	 	REJECT Body-Spamschutzregel 400
+/If you prefer not to receive future emails/ 	 	 	REJECT Body-Spamschutzregel 401
+/I'm a total exibitionist/ 	 	 	REJECT Body-Spamschutzregel 402
+/Im a total exibitionist/ 	 	 	REJECT Body-Spamschutzregel 403
+/In Compliance With The New E[-\ ]Mail Bill/ 	 	 	REJECT Body-Spamschutzregel 404
+#/Interest rates are rising/ 	 	 	REJECT Body-Spamschutzregel 405
+/Just ONE click away from showing you/ 	 	 	REJECT Body-Spamschutzregel 406
+/Lender referral service/ 	 	 	REJECT Body-Spamschutzregel 407
+/Lenders Compete For Your Business/ 	 	 	REJECT Body-Spamschutzregel 408
+/Life Changing Opportunity/ 	 	 	REJECT Body-Spamschutzregel 409
+/Lips Around Your/ 	 	 	REJECT Body-Spamschutzregel 410
+/Locate Hidden Assets/ 	 	 	REJECT Body-Spamschutzregel 411
+/Lose Pounds And Inches/ 	 	 	REJECT Body-Spamschutzregel 412
+/Lose Some Weight Before/ 	 	 	REJECT Body-Spamschutzregel 413
+/Low[-\ ]Cost Viagra/ 	 	 	REJECT Body-Spamschutzregel 414
+/Lowest Mortgage/ 	 	 	REJECT Body-Spamschutzregel 415
+/Make money online/ 	 	 	REJECT Body-Spamschutzregel 416
+# /Marketing Method/ 	 	 	REJECT Body-Spamschutzregel 417
+/Million E[-\ ]mail Addresses/ 	 	 	REJECT Body-Spamschutzregel 418
+/Million Email Addresses/ 	 	 	REJECT Body-Spamschutzregel 419
+/Minutes To Complete Your Order/ 	 	 	REJECT Body-Spamschutzregel 420
+/Much More Effective For Both Partners/ 	 	 	REJECT Body-Spamschutzregel 421
+/Mortgage Quote/ 	 	 	REJECT Body-Spamschutzregel 422
+/Need Fod Adult Entertainment/ 	 	 	REJECT Body-Spamschutzregel 423
+/Never Sends Unsolicited Email/ 	 	 	REJECT Body-Spamschutzregel 424
+/No[-\ ]Spam Policy/ 	 	 	REJECT Body-Spamschutzregel 425
+/On my personal live Webcam/ 	 	 	REJECT Body-Spamschutzregel 427
+/One[-\ ]Time Mail/ 	 	 	REJECT Body-Spamschutzregel 428
+/One[-\ ]Time Non[-\ ]Commercial/ 	 	 	REJECT Body-Spamschutzregel 429
+/Opt-In To Our/ 	 	 	REJECT Body-Spamschutzregel 430
+/Opt-Out From Our/ 	 	 	REJECT Body-Spamschutzregel 431
+/Our Herbal Supplement/ 	 	 	REJECT Body-Spamschutzregel 432
+/Owning your first home/ 	 	 	REJECT Body-Spamschutzregel 433
+/Partner E[-\ ]mail Offers/ 	 	 	REJECT Body-Spamschutzregel 434
+/Partner Email Offers/ 	 	 	REJECT Body-Spamschutzregel 435
+/Penis.*growth/ 	 	 	REJECT Body-Spamschutzregel 436
+/Permanently (deleted|removed) From Our/ 	 	 	REJECT Body-Spamschutzregel 437
+/Permission Based E[-\ ]mail/ 	 	 	REJECT Body-Spamschutzregel 438
+/Permission Based Email/ 	 	 	REJECT Body-Spamschutzregel 439
+/Pheromone Concentrate/ 	 	 	REJECT Body-Spamschutzregel 440
+/Potent Pheromone/ 	 	 	REJECT Body-Spamschutzregel 441
+/Price Discount for New TLD Extensions/ 	 	 	REJECT Body-Spamschutzregel 442
+/Quality Amateur Action/ 	 	 	REJECT Body-Spamschutzregel 443
+/Ready to refinance/ 	 	 	REJECT Body-Spamschutzregel 444
+/Real Live Cameras And Movies/ 	 	 	REJECT Body-Spamschutzregel 445
+/Real LiveCameras And Movies/ 	 	 	REJECT Body-Spamschutzregel 446
+/Receive Special Offer/ 	 	 	REJECT Body-Spamschutzregel 447
+/Reduce Body Fat/ 	 	 	REJECT Body-Spamschutzregel 448
+/Refinance Your Home/ 	 	 	REJECT Body-Spamschutzregel 449
+/Second Mortgage/ 	 	 	REJECT Body-Spamschutzregel 450
+/Secure A Better Life For/ 	 	 	REJECT Body-Spamschutzregel 451
+/See How Much You Can Save/ 	 	 	REJECT Body-Spamschutzregel 452
+/Sent to you in compliance (with|of)/ 	 	 	REJECT Body-Spamschutzregel 453
+/Sent To You By A Marketing Partner/ 	 	 	REJECT Body-Spamschutzregel 454
+/Sent in compliance (with|of)/ 	 	 	REJECT Body-Spamschutzregel 455
+/Serious Inquiries Only Please/ 	 	 	REJECT Body-Spamschutzregel 456
+/Shop Hundreds Of Lenders/ 	 	 	REJECT Body-Spamschutzregel 457
+/Start Making $1/ 	 	 	REJECT Body-Spamschutzregel 458
+/Step To Financial Freedom/ 	 	 	REJECT Body-Spamschutzregel 459
+/Steps To Financial Freedom/ 	 	 	REJECT Body-Spamschutzregel 460
+/Suck My Cock/ 	 	 	REJECT Body-Spamschutzregel 461
+/Take A FREE Trip/ 	 	 	REJECT Body-Spamschutzregel 462
+/TAKE YOUR FIRST BIG STEP/ 	 	 	REJECT Body-Spamschutzregel 463
+/Targeted E[-\ ]mail List/ 	 	 	REJECT Body-Spamschutzregel 464
+/Targeted Email List/ 	 	 	REJECT Body-Spamschutzregel 465
+/The following gift or special offer was sent to you/ 	 	 	REJECT Body-Spamschutzregel 466
+/This email is not sent unsolicited/ 	 	 	REJECT Body-Spamschutzregel 467
+/This Is A One[-\ ]*Time (email|e-mail|mailing|offer)/ 	 	 	REJECT Body-Spamschutzregel 468
+/This mailing is done by an independent marketing/ 	 	 	REJECT Body-Spamschutzregel 469
+/To Be Removed From This Targeted/ 	 	 	REJECT Body-Spamschutzregel 470
+/To Claim Your Prize Click/ 	 	 	REJECT Body-Spamschutzregel 471
+/To Stop All Future Offers/ 	 	 	REJECT Body-Spamschutzregel 472
+/Under Bill s.1618/ 	 	 	REJECT Body-Spamschutzregel 473
+/Universal Advertising System/ 	 	 	REJECT Body-Spamschutzregel 474
+/Unlimited Phone Conversations/ 	 	 	REJECT Body-Spamschutzregel 475
+/Using Your Identity/ 	 	 	REJECT Body-Spamschutzregel 476
+/Virtumundo/ 	 	 	REJECT Body-Spamschutzregel 477
+/Voted sex[-\ ]server on the web/ 	 	 	REJECT Body-Spamschutzregel 478
+/We can award any degree/ 	 	 	REJECT Body-Spamschutzregel 479
+/We know it sounds impossible/ 	 	 	REJECT Body-Spamschutzregel 480
+# /Weight Loss [Drug\Medication]/ 	 	 	REJECT Body-Spamschutzregel 481
+/While working from the privacy of your own home/ 	 	 	REJECT Body-Spamschutzregel 482
+/Win Big Money Today/ 	 	 	REJECT Body-Spamschutzregel 483
+/Without Pumps Or Weights Or Stretches/ 	 	 	REJECT Body-Spamschutzregel 484
+/Wouldn't You Like Your Husband Or Boyfriend To Have/ 	 	 	REJECT Body-Spamschutzregel 485
+/You Agree To Receive Email Marketing From/ 	 	 	REJECT Body-Spamschutzregel 486
+/You Are Receiving This Exclusive Promotion/ 	 	 	REJECT Body-Spamschutzregel 487
+/You Are Registered At One Of Our/ 	 	 	REJECT Body-Spamschutzregel 488
+/You are receiving this mail because you have/ 	 	 	REJECT Body-Spamschutzregel 489
+/You Have Agreed To Receive/ 	 	 	REJECT Body-Spamschutzregel 490
+/You Can Search For Anyone/ 	 	 	REJECT Body-Spamschutzregel 491
+/You've Agreed To Receive/ 	 	 	REJECT Body-Spamschutzregel 492
+/You Registered At One Of Our/ 	 	 	REJECT Body-Spamschutzregel 493
+/You've Registered At One Of Our/ 	 	 	REJECT Body-Spamschutzregel 494
+/Your E[-\ ]mail Address Was Obtained/ 	 	 	REJECT Body-Spamschutzregel 495
+/Your Email Address Was Obtained/ 	 	 	REJECT Body-Spamschutzregel 496
+/Your Email Address Was Supplied/ 	 	 	REJECT Body-Spamschutzregel 497
+/Your Mail Address Was Supplied/ 	 	 	REJECT Body-Spamschutzregel 498
+/Your Penis Size/ 	 	 	REJECT Body-Spamschutzregel 499
+/Smart Tags, Smart Investments?/		 	 	REJECT Body-Spamschutzregel 500
+/faze the Neptune focal point and strive enterprising/ 	 	 	REJECT Body-Spamschutzregel 501
+/full moon insistence gist an packed/ 	 	 	REJECT Body-Spamschutzregel 502
+/a upward prominently field day health care the ridicule offing or Internet seemingly/ 	 	 	REJECT Body-Spamschutzregel 503
+/fanatic but consistency sluice scrape downtrodden five and ten on needless/ 	 	 	REJECT Body-Spamschutzregel 504
+/fuse box sick sister/ 	 	 	REJECT Body-Spamschutzregel 505
+/immediate fulfillment big deal and cashier/ 	 	 	REJECT Body-Spamschutzregel 506
+/in on parakeet quizzical chicken feed leper on square/ 	 	 	REJECT Body-Spamschutzregel 508
+/reference ounce a achiever sunblock syringe roadside longevity/ 	 	 	REJECT Body-Spamschutzregel 509
+/ocean distrust as antiperspirant coax lubricant entry, the northwestern politicize,/ 	 	 	REJECT Body-Spamschutzregel 510
+/By the time Scarlett had undressed and blown out the candle, her/ 	 	 	REJECT Body-Spamschutzregel 511
+/E-MAIL:czq7q67a@yahoo.co.jp/ 	 	 	REJECT Body-Spamschutzregel 512
