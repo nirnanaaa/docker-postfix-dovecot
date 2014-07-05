@@ -52,7 +52,8 @@ case $1 in
       -nodes \
       -out "/etc/dovecot/dovecot.pem" -keyout "/etc/dovecot/private/dovecot.pem"
 
-    /usr/sbin/dovecot -F
+    /usr/sbin/service dovecot start
+    tail -f /var/log/dovecot.log
   ;;
   *)
     echo Commands:
