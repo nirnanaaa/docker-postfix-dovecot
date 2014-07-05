@@ -38,6 +38,7 @@ RUN postmap /etc/postfix/access_client
 ADD dovecot/conf.d/10-auth.conf /etc/dovecot/conf.d/10-auth.conf
 ADD dovecot/conf.d/10-director.conf /etc/dovecot/conf.d/10-director.conf
 ADD dovecot/conf.d/10-mail.conf /etc/dovecot/conf.d/10-mail.conf
+ADD dovecot/conf.d/10-logging.conf /etc/dovecot/conf.d/10-logging.conf
 ADD dovecot/conf.d/10-master.conf /etc/dovecot/conf.d/10-master.conf
 ADD dovecot/conf.d/10-ssl.conf /etc/dovecot/conf.d/10-ssl.conf
 ADD dovecot/conf.d/15-lda.conf /etc/dovecot/conf.d/15-lda.conf

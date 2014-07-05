@@ -8,13 +8,13 @@ Build the image:
 
 The image provides three commands:
 
-* configure
 * start
 * log
 
-`configure` is used to configure postfix dovecot and postgrey for your
-needs. It takes one argument.
 
-```
-> docker run mailserver configure <mailname> <dbhost> <dbname> <dbuser> <dbpass>
-```
+# TODO
+* run postfix as user postfix with correct permissions for
+  /var/lib/postfix and /var/spool/postfix
+* support etcd
+* document postgres usage
+* test
