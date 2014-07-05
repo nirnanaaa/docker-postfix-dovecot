@@ -46,6 +46,7 @@ ADD dovecot/conf.d/15-mailboxes.conf /etc/dovecot/conf.d/15-mailboxes.conf
 ADD dovecot/conf.d/20-lmtp.conf /etc/dovecot/conf.d/20-lmtp.conf
 
 RUN mkdir /etc/dovecot/dovecot-acls
+RUN touch /var/log/dovecot.log
 ADD dovecot/conf.d/90-acl.conf /etc/dovecot/conf.d/90-acl.conf
 ADD dovecot/conf.d/90-plugin.conf /etc/dovecot/conf.d/90-plugin.conf
 ADD dovecot/conf.d/90-sieve.conf /etc/dovecot/conf.d/90-sieve.conf
