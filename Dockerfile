@@ -10,13 +10,16 @@ RUN chown -R vmail:vmail /var/mail/vmail
 RUN apt-get update -yqq
 RUN apt-get upgrade -yqq
 
+
 # Allow postfix to install without interaction.
 RUN echo "postfix postfix/mailname string example.com" | debconf-set-selections
 RUN echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set-selections
 
 
 # Install packages
-RUN apt-get install -yqq sudo postfix postgrey postfix-pcre postfix-pgsql policyd-weight dovecot-common dovecot-core dovecot-gssapi dovecot-imapd dovecot-ldap dovecot-lmtpd dovecot-pgsql dovecot-sieve
+RUN apt-get install -yqq supervisor postfix postgrey postfix-pcre postfix-pgsql policyd-weight dovecot-common dovecot-core dovecot-gssapi dovecot-imapd dovecot-ldap dovecot-lmtpd dovecot-pgsql dovecot-sieve
+
+ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Copy postfix configuration
 ADD postfix/master.cf /etc/postfix/master.cf
 ADD postfix/body_checks /etc/postfix/body_checks
