@@ -7,7 +7,11 @@ echo "$HOSTNAME" > /etc/hostname
 echo "$MAILNAME" > /etc/mailname
 postconf -e "myhostname=$HOSTNAME"
 
+echo "Testing postgres connection:"
+PGPASSWORD=$PF_DB_PASS psql -U $PF_DB_USER -h $PF_DB_HOST -w -c \\q mails
 echo "postmaster_address = postmaster@$MAILNAME" >> /etc/dovecot/conf.d/15-lda.conf
 
 PF_DIR=/etc/postfix DC_DIR=/etc/dovecot /template $PF_DB_USER $PF_DB_PASS $PF_DB_NAME $PF_DB_HOST
+chown -R postfix:postfix /etc/postfix
+chown -R dovecot:dovecot /etc/dovecot
 

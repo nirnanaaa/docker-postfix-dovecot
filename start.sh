@@ -10,12 +10,6 @@ fi
 
 case $1 in
   start)
-    /bin/bash /bootstrap.sh
-
-    if [ ! -f /etc/postfix/transport.cf ]; then
-      echo "you must run the configure task before running"
-      exit 1
-    fi
     /usr/sbin/service postgrey stop > /dev/null 2>&1
     /usr/sbin/service policyd-weight stop > /dev/null 2>&1
 
@@ -27,14 +21,12 @@ case $1 in
       -nodes \
       -out "/etc/dovecot/dovecot.pem" -keyout "/etc/dovecot/private/dovecot.pem"
 
+    /bin/bash /bootstrap.sh
     supervisord -n
   ;;
   *)
     echo Commands:
     echo "    start       Launch the complete package"
-    echo "    configure   Perform the configuration steps"
-    echo "    log         Tail the mail log under /var/log/mail.log"
-    echo "    shell       Open a shell"
   ;;
 esac
 

@@ -17,7 +17,7 @@ RUN echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set
 
 
 # Install packages
-RUN apt-get install -yqq supervisor postfix postgrey postfix-pcre postfix-pgsql policyd-weight dovecot-common dovecot-core dovecot-gssapi dovecot-imapd dovecot-ldap dovecot-lmtpd dovecot-pgsql dovecot-sieve
+RUN apt-get install -yqq supervisor postfix postgrey postfix-pcre postfix-pgsql policyd-weight dovecot-common dovecot-core dovecot-gssapi dovecot-imapd dovecot-ldap dovecot-lmtpd dovecot-pgsql dovecot-sieve postgresql-client
 
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Copy postfix configuration
