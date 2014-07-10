@@ -1,4 +1,3 @@
-postmaster@ OK
-abuse@ OK
-hostmaster@ OK
-support@ OK
+postmaster@ permit_auth_destination
+abuse@ permit_auth_destination
+hostmaster@ permit_auth_destination

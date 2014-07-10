@@ -36,11 +36,11 @@ ADD postfix/access_client /etc/postfix/access_client
 ADD postfix/access_helo /etc/postfix/access_helo
 ADD postfix/access_sender /etc/postfix/access_sender
 
-RUN postmap /etc/postfix/access_recipient
-RUN postmap /etc/postfix/access_recipient_rfc
-RUN postmap /etc/postfix/access_helo
-RUN postmap /etc/postfix/access_sender
-RUN postmap /etc/postfix/access_client
+RUN postmap btree:/etc/postfix/access_recipient
+RUN postmap btree:/etc/postfix/access_recipient_rfc
+RUN postmap btree:/etc/postfix/access_helo
+RUN postmap btree:/etc/postfix/access_sender
+RUN postmap btree:/etc/postfix/access_client
 
 # Dovecot
 ADD dovecot/conf.d/10-auth.conf /etc/dovecot/conf.d/10-auth.conf
@@ -81,6 +81,10 @@ RUN chown -R postfix:postfix /etc/postfix
 ADD postgresql/postgresql.conf /etc/postgresql/9.1/main/postgresql.conf
 RUN chown -R postgres:postgres /etc/postgresql
 RUN chmod -R 700 /etc/postgresql
+
+RUN apt-get install -yqq rsyslog wget
+RUN service rsyslog stop
+ADD rsyslog/rsyslog.conf /etc/rsyslog.conf
 
 # Port configuration
 EXPOSE 25

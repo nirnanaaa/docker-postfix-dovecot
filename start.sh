@@ -11,6 +11,7 @@ function initdb(){
   if [ ! -d /var/lib/postgresql/9.1/main ]; then
     cd /var/lib/postgresql
     mkdir 9.1
+    chown -R postgres:postgres /var/lib/postgresql
     su -c '/usr/lib/postgresql/9.1/bin/initdb /var/lib/postgresql/9.1/main' postgres
   fi
 }
@@ -27,7 +28,7 @@ case $1 in
     cd /pg_dumps
     wget $2 --no-check-certificate
     su postgres -c "/usr/lib/postgresql/9.1/bin/pg_ctl start -D /var/lib/postgresql/9.1/main"
-    sleep 3
+    sleep 5
     chown -R postgres:postgres /pg_dumps
     su -c 'psql -f *' postgres
     su postgres -c "/usr/lib/postgresql/9.1/bin/pg_ctl stop -D /var/lib/postgresql/9.1/main"
