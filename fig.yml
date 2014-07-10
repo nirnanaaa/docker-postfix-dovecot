@@ -1,0 +1,14 @@
+image: "nirnanaaa/docker-postfix-dovecot"
+
+build: .
+
+links:
+  - postgresql
+
+ports:
+  - "25:25"
+  - "143:143"
+  - "993:993"
+
+volumes:
+  - /media/data/mail:/data
