@@ -17,7 +17,12 @@ RUN echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set
 
 
 # Install packages
-RUN apt-get install -yqq supervisor postfix postgrey postfix-pcre postfix-pgsql policyd-weight dovecot-common dovecot-core dovecot-gssapi dovecot-imapd dovecot-ldap dovecot-lmtpd dovecot-pgsql dovecot-sieve postgresql-client
+RUN apt-get install -yqq supervisor postgresql postfix postgrey postfix-pcre postfix-pgsql policyd-weight dovecot-common dovecot-core dovecot-gssapi dovecot-imapd dovecot-ldap dovecot-lmtpd dovecot-pgsql dovecot-sieve
+
+RUN service postgresql stop
+# Allow connections from anywhere.
+RUN sed -i -e"s/^#listen_addresses =.*$/listen_addresses = '*'/" /etc/postgresql/9.1/main/postgresql.conf
+RUN echo "host    all    all    0.0.0.0/0    md5" >> /etc/postgresql/9.1/main/pg_hba.conf
 
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Copy postfix configuration
@@ -72,6 +77,10 @@ CMD exec "/bootstrap.sh"
 
 RUN chown -R postfix:postfix /etc/postfix
 
+
+ADD postgresql/postgresql.conf /etc/postgresql/9.1/main/postgresql.conf
+RUN chown -R postgres:postgres /etc/postgresql
+RUN chmod -R 700 /etc/postgresql
 
 # Port configuration
 EXPOSE 25

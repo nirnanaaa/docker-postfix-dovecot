@@ -33,8 +33,6 @@ table=postfix_mailboxes
 select_field=mailbox
 where_field=userid
 hosts=$HOST" > $PF_DIR/mailboxes.cf
-      ls -lah /etc/postfix
-      cat /etc/postfix/mailboxes.cf
       ;;
     dovecot_sql)
       echo "driver = pgsql
@@ -42,8 +40,6 @@ connect = host=$HOST dbname=$NAME user=$USER password=$PASS
 default_pass_scheme = CRYPT
 password_query = SELECT userid as user, password FROM users WHERE userid = '%u'
 user_query = SELECT home, uid, gid FROM users WHERE userid = '%u'" > $DC_DIR/dovecot-sql.conf.ext
-      ls -lah /etc/dovecot
-      cat /etc/dovecot/dovecot-sql.conf.ext
       ;;
     *)
       ;;

@@ -21,6 +21,14 @@ case $1 in
       -nodes \
       -out "/etc/dovecot/dovecot.pem" -keyout "/etc/dovecot/private/dovecot.pem"
 
+    ls -la /etc/postgresql
+    if [ ! -d /var/lib/postgresql/9.1/main ]; then
+      cd /var/lib/postgresql
+      mkdir 9.1
+      su -c '/usr/lib/postgresql/9.1/bin/initdb /var/lib/postgresql/9.1/main' postgres
+      #su -c "/usr/lib/postgresql/9.1/bin/postgres -D /etc/postgresql/9.1/main" postgres
+    fi
+
     /bin/bash /bootstrap.sh
     supervisord -n
   ;;
